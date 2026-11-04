@@ -1,24 +1,20 @@
-# Imagem base oficial leve do Node.js
+# Imagem base com suporte a compilação nativa para SQLite
 FROM node:20-alpine
 
-# Define diretório de trabalho
+# Instala ferramentas para compilar módulos nativos C++ (necessário para better-sqlite3)
+RUN apk add --no-cache python3 make g++
+
 WORKDIR /app
 
-# Copia arquivos de definição de pacotes
 COPY package*.json ./
 
-# Instala dependências de produção
 RUN npm install --omit=dev
 
-# Copia todo o código da aplicação
 COPY . .
 
-# Expõe a porta interna da aplicação
 EXPOSE 3000
 
-# Variáveis padrão
 ENV NODE_ENV=production
 ENV PORT=3000
 
-# Comando para iniciar
 CMD ["node", "src/server.js"]
