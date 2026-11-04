@@ -1,6 +1,7 @@
 const Database = require('better-sqlite3');
 const path = require('path');
 const fs = require('fs');
+const bcrypt = require('bcryptjs');
 
 const DB_DIR = path.join(__dirname, '../../data');
 if (!fs.existsSync(DB_DIR)) {
@@ -10,11 +11,29 @@ if (!fs.existsSync(DB_DIR)) {
 const DB_PATH = path.join(DB_DIR, 'smm_panel.sqlite');
 const db = new Database(DB_PATH);
 
-// Ativa WAL mode (Write-Ahead Logging) para alta performance concorrente
+// Ativa WAL mode
 db.pragma('journal_mode = WAL');
 
-// 1. Inicializa o Schema do Banco de Dados
+// Inicializa o Schema
 db.exec(`
+  CREATE TABLE IF NOT EXISTS users (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    username TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    role TEXT DEFAULT 'admin',
+    created_at TEXT DEFAULT (datetime('now'))
+  );
+
+  CREATE TABLE IF NOT EXISTS api_tokens (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    token TEXT UNIQUE NOT NULL,
+    role TEXT DEFAULT 'full_access',
+    last_used TEXT,
+    created_at TEXT DEFAULT (datetime('now'))
+  );
+
   CREATE TABLE IF NOT EXISTS accounts (
     id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
@@ -72,82 +91,29 @@ db.exec(`
   );
 `);
 
-// Migração inicial dos dados existentes (se houver app_store.json)
-const JSON_FILE = path.join(DB_DIR, 'app_store.json');
-if (fs.existsSync(JSON_FILE)) {
-  try {
-    const raw = JSON.parse(fs.readFileSync(JSON_FILE, 'utf8'));
-
-    // Migra Contas
-    if (raw.accounts && Array.isArray(raw.accounts)) {
-      const insertAcc = db.prepare(`
-        INSERT OR IGNORE INTO accounts (id, name, platform, link, target_followers, current_followers, service_id, auto_refill_enabled, notes, last_checked)
-        VALUES (@id, @name, @platform, @link, @target_followers, @current_followers, @service_id, @auto_refill_enabled, @notes, @last_checked)
-      `);
-      for (const a of raw.accounts) {
-        insertAcc.run({
-          id: a.id,
-          name: a.name,
-          platform: a.platform || 'instagram',
-          link: a.link,
-          target_followers: a.targetFollowers || a.target_followers || 0,
-          current_followers: a.currentFollowers ?? a.current_followers ?? null,
-          service_id: a.serviceId || null,
-          auto_refill_enabled: a.autoRefillEnabled ? 1 : 0,
-          notes: a.notes || '',
-          last_checked: a.lastChecked || new Date().toISOString()
-        });
-      }
-    }
-
-    // Migra Pedidos
-    if (raw.orders && Array.isArray(raw.orders)) {
-      const insertOrder = db.prepare(`
-        INSERT OR IGNORE INTO orders (order_id, service_id, service_name, link, account_id, quantity, runs, interval, status, charge, start_count, remains, target_amount, created_at)
-        VALUES (@order_id, @service_id, @service_name, @link, @account_id, @quantity, @runs, @interval, @status, @charge, @start_count, @remains, @target_amount, @created_at)
-      `);
-      for (const o of raw.orders) {
-        insertOrder.run({
-          order_id: o.orderId || o.order_id,
-          service_id: o.serviceId || o.service_id,
-          service_name: o.serviceName || o.service_name || '',
-          link: o.link,
-          account_id: o.accountId || o.account_id || null,
-          quantity: o.quantity,
-          runs: o.runs || null,
-          interval: o.interval || null,
-          status: o.status || 'Pending',
-          charge: o.charge || '0',
-          start_count: o.start_count || '0',
-          remains: o.remains || '0',
-          target_amount: o.targetAmount || o.target_amount || o.quantity,
-          created_at: o.createdAt || o.created_at || new Date().toISOString()
-        });
-      }
-    }
-
-    // Migra Crons padrão
-    if (raw.cronConfigs && Array.isArray(raw.cronConfigs)) {
-      const insertCron = db.prepare(`
-        INSERT OR IGNORE INTO cron_configs (id, name, expression, enabled, description)
-        VALUES (@id, @name, @expression, @enabled, @description)
-      `);
-      for (const c of raw.cronConfigs) {
-        insertCron.run({
-          id: c.id,
-          name: c.name,
-          expression: c.expression,
-          enabled: c.enabled ? 1 : 0,
-          description: c.description || ''
-        });
-      }
-    }
-  } catch (err) {
-    console.error('Aviso ao migrar app_store.json para SQLite:', err.message);
-  }
+// Garante usuário padrão inicial (admin / admin123 ou malves / M@ychel123)
+const userCount = db.prepare('SELECT count(*) as count FROM users').get().count;
+if (userCount === 0) {
+  const hash = bcrypt.hashSync('M@ychel123', 10);
+  db.prepare(`
+    INSERT INTO users (id, name, username, password_hash, role)
+    VALUES (?, ?, ?, ?, ?)
+  `).run('user_admin', 'Maychel Alves', 'malves', hash, 'admin');
+  console.log('[DB] Usuário admin padrão criado: malves');
 }
 
-// Garante crons padrões no banco
+// Garante um API Token mestre inicial se nenhum existir
+const tokenCount = db.prepare('SELECT count(*) as count FROM api_tokens').get().count;
+if (tokenCount === 0) {
+  const defaultToken = 'smm_sec_' + require('crypto').randomBytes(20).toString('hex');
+  db.prepare(`
+    INSERT INTO api_tokens (id, name, token, role)
+    VALUES (?, ?, ?, ?)
+  `).run('tok_default', 'Master Integration Token', defaultToken, 'full_access');
+  console.log('[DB] Token de API padrão inicial gerado:', defaultToken);
+}
+
+// Garante crons padrões
 const defaultCrons = [
   { id: 'daily_refill_check', name: 'Verificação Diária de Quedas e Auto-Refill', expression: '0 9 * * *', enabled: 1, description: 'Checa contas e solicita reposição automática se houver queda' },
   { id: 'hourly_order_sync', name: 'Sincronização de Status de Pedidos', expression: '0 * * * *', enabled: 1, description: 'Atualiza start_count, status e remanescentes direto do provedor SMM' }
@@ -156,7 +122,7 @@ const insertCronStmt = db.prepare(`INSERT OR IGNORE INTO cron_configs (id, name,
 defaultCrons.forEach(c => insertCronStmt.run(c));
 
 /* ========================================================
-   INTERFACE COMPATÍVEL DE DADOS
+   FUNÇÕES DE CONSULTA E PERSISTÊNCIA
    ======================================================== */
 
 function loadData() {
@@ -212,7 +178,6 @@ function loadData() {
 }
 
 function saveData(data) {
-  // Salva contas
   if (data.accounts && Array.isArray(data.accounts)) {
     const upsertAcc = db.prepare(`
       INSERT INTO accounts (id, name, platform, link, target_followers, current_followers, service_id, auto_refill_enabled, notes, last_checked)
@@ -244,7 +209,6 @@ function saveData(data) {
     tx(data.accounts);
   }
 
-  // Salva pedidos
   if (data.orders && Array.isArray(data.orders)) {
     const upsertOrder = db.prepare(`
       INSERT INTO orders (order_id, service_id, service_name, link, account_id, quantity, runs, interval, status, charge, start_count, remains, target_amount, created_at)
@@ -279,7 +243,6 @@ function saveData(data) {
     tx(data.orders);
   }
 
-  // Salva histórico de cron recente se houver
   if (data.cronHistory && data.cronHistory.length > 0) {
     const latest = data.cronHistory[0];
     if (latest && !latest.id) {
@@ -295,7 +258,6 @@ function saveData(data) {
     }
   }
 
-  // Salva configurações de cron
   if (data.cronConfigs && Array.isArray(data.cronConfigs)) {
     const upsertCron = db.prepare(`
       INSERT INTO cron_configs (id, name, expression, enabled, description)
@@ -313,11 +275,6 @@ function saveData(data) {
       description: c.description || ''
     }));
   }
-
-  // Backup espelho em JSON para visualização e segurança dupla
-  try {
-    fs.writeFileSync(JSON_FILE, JSON.stringify(loadData(), null, 2), 'utf8');
-  } catch (e) {}
 }
 
 module.exports = {

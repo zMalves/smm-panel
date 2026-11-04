@@ -4,6 +4,7 @@ const smm = require('../services/smmClient');
 const storage = require('../services/storage');
 const checker = require('../services/followerChecker');
 const cronManager = require('../services/cronManager');
+const { mcpAuthMiddleware } = require('../middlewares/auth');
 
 /**
  * Definição oficial das ferramentas (Tools) MCP
@@ -113,22 +114,26 @@ const MCP_TOOLS = [
 
 /**
  * GET /mcp/tools
- * Retorna o manifesto de ferramentas MCP (para discovery de agentes e ferramentas)
+ * Retorna o manifesto de ferramentas MCP
  */
 router.get('/tools', (req, res) => {
   res.json({
     schema_version: "v1",
     name: "smm-panel-mcp-server",
-    description: "Servidor MCP para Gestão de Pedidos SMM, Catálogo, Contas e Automação de Refill",
+    description: "Servidor MCP Protegido para Gestão de Pedidos SMM, Catálogo, Contas e Automação de Refill",
+    authentication: {
+      type: "api_key",
+      header: "X-API-Key ou Authorization: Bearer <token>"
+    },
     tools: MCP_TOOLS
   });
 });
 
 /**
  * POST /mcp/call
- * Endpoint JSON-RPC / MCP Call para execução das ferramentas por agentes de IA e outros apps
+ * Execução protegida de ferramentas MCP
  */
-router.post('/call', async (req, res) => {
+router.post('/call', mcpAuthMiddleware, async (req, res) => {
   const { name, arguments: args } = req.body;
   const toolName = name || (req.body.params && req.body.params.name);
   const toolArgs = args || (req.body.params && req.body.params.arguments) || {};
@@ -187,7 +192,6 @@ router.post('/call', async (req, res) => {
             createdAt: new Date().toISOString()
           });
 
-          // Atualiza conta se existir
           const acc = db.accounts.find(a => a.link.toLowerCase() === cleanLink.toLowerCase());
           if (acc && toolArgs.addToAccountTarget) {
             acc.targetFollowers = (acc.targetFollowers || 0) + qty;

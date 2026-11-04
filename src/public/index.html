@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SMM Manager Pro - Gestor Completo</title>
-  <!-- TailwindCSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { background-color: #0b0f17; color: #cbd5e1; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -27,13 +25,13 @@
       <div>
         <h1 class="text-xl font-bold text-white tracking-wide flex items-center gap-2">
           SMM Panel Pro
-          <span class="text-[10px] uppercase font-bold tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded">v2.0</span>
+          <span class="text-[10px] uppercase font-bold tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded">v2.1 Auth</span>
         </h1>
-        <p class="text-xs text-gray-400">Gestão de Contas, Compra de Seguidores & Automação de Refill</p>
+        <p class="text-xs text-gray-400">Gestão de Contas, Compra de Seguidores, Usuários & Tokens MCP</p>
       </div>
     </div>
 
-    <!-- Saldo Badge & Ações Rápidas -->
+    <!-- Saldo Badge, Perfil & Logout -->
     <div class="flex items-center gap-3">
       <div id="balanceBadge" class="bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 px-4 py-2 rounded-xl flex items-center gap-2.5">
         <i data-lucide="wallet" class="w-4 h-4 text-emerald-400"></i>
@@ -45,6 +43,18 @@
       <button onclick="loadBalance()" title="Recarregar Saldo" class="p-2.5 card hover:border-gray-500 rounded-xl text-gray-400 hover:text-white transition">
         <i data-lucide="refresh-cw" class="w-4 h-4"></i>
       </button>
+
+      <!-- Usuário Logado -->
+      <div class="flex items-center gap-2 pl-2 border-l border-gray-800">
+        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold" id="userAvatar">U</div>
+        <div class="hidden sm:block text-left text-xs">
+          <div class="font-bold text-white leading-tight" id="userNameDisplay">Usuário</div>
+          <div class="text-gray-400 text-[10px]" id="userRoleDisplay">Admin</div>
+        </div>
+        <button onclick="handleLogout()" title="Sair da Conta" class="p-2 text-gray-400 hover:text-red-400 rounded-xl hover:bg-red-950/30 transition">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -59,6 +69,9 @@
       </button>
       <button onclick="switchTab('new-order')" id="tabBtn-new-order" class="py-3.5 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap text-sm">
         <i data-lucide="plus-circle" class="w-4 h-4"></i> Comprar Seguidores
+      </button>
+      <button onclick="switchTab('security')" id="tabBtn-security" class="py-3.5 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap text-sm">
+        <i data-lucide="key" class="w-4 h-4"></i> Tokens de API & Usuários
       </button>
       <button onclick="switchTab('crons')" id="tabBtn-crons" class="py-3.5 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap text-sm">
         <i data-lucide="clock" class="w-4 h-4"></i> Automação (Cron Jobs)
@@ -76,7 +89,7 @@
   <main class="flex-1 p-6 max-w-7xl w-full mx-auto space-y-6">
 
     <!-- ==========================================
-         TAB 0: MINHAS CONTAS (DASHBOARD PRINCIPAL)
+         TAB 0: MINHAS CONTAS
          ========================================== -->
     <section id="tab-accounts" class="space-y-4">
       <div class="flex flex-wrap justify-between items-center gap-4">
@@ -97,10 +110,7 @@
         </div>
       </div>
 
-      <!-- Grid de Contas Monitoradas -->
-      <div id="accountsCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Renderizado dinamicamente via JS -->
-      </div>
+      <div id="accountsCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </section>
 
     <!-- ==========================================
@@ -142,7 +152,7 @@
     </section>
 
     <!-- ==========================================
-         TAB 2: COMPRAR SEGUIDORES (NOVO PEDIDO)
+         TAB 2: COMPRAR SEGUIDORES
          ========================================== -->
     <section id="tab-new-order" class="hidden max-w-3xl mx-auto space-y-4">
       <div class="card p-6 md:p-8 rounded-2xl space-y-6">
@@ -155,7 +165,6 @@
         </div>
 
         <form id="newOrderForm" onsubmit="submitNewOrder(event)" class="space-y-4">
-          <!-- Atalho: Selecionar Conta Existente -->
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Preencher com Conta Monitorada</label>
             <select id="quickAccountSelect" onchange="applyQuickAccount()" class="w-full input-dark rounded-xl p-2.5 text-sm">
@@ -163,7 +172,6 @@
             </select>
           </div>
 
-          <!-- Categoria -->
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Categoria de Serviço *</label>
             <select id="categorySelect" onchange="filterServicesByCategory()" class="w-full input-dark rounded-xl p-2.5 text-sm">
@@ -171,7 +179,6 @@
             </select>
           </div>
 
-          <!-- Serviço -->
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Serviço *</label>
             <select id="serviceSelect" onchange="updateServiceDetails()" required class="w-full input-dark rounded-xl p-2.5 text-sm">
@@ -188,13 +195,11 @@
             </div>
           </div>
 
-          <!-- Link -->
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Link ou Perfil (@) *</label>
             <input type="text" id="orderLink" placeholder="https://www.instagram.com/seuperfil/" required class="w-full input-dark rounded-xl p-2.5 text-sm">
           </div>
 
-          <!-- Quantidade -->
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Quantidade Desejada *</label>
             <input type="number" id="orderQty" placeholder="Ex: 500" required class="w-full input-dark rounded-xl p-2.5 text-sm" oninput="calculateOrderCost()">
@@ -207,10 +212,9 @@
             </div>
           </div>
 
-          <!-- Opções Avançadas -->
           <div class="border-t border-gray-800 pt-3">
             <button type="button" onclick="toggleDripFeed()" class="text-xs font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1">
-              <i data-lucide="chevron-down" class="w-3 h-3"></i> Opções Avançadas (Drip-feed / Entregas parceladas)
+              <i data-lucide="chevron-down" class="w-3 h-3"></i> Opções Avançadas (Drip-feed)
             </button>
             <div id="dripFeedBox" class="hidden grid grid-cols-2 gap-4 mt-3">
               <div>
@@ -234,7 +238,80 @@
     </section>
 
     <!-- ==========================================
-         TAB 3: AUTOMAÇÃO (CRON JOBS)
+         TAB 3: SEGURANÇA (TOKENS MCP & USUÁRIOS)
+         ========================================== -->
+    <section id="tab-security" class="hidden space-y-6">
+      
+      <!-- Sub-seção: Tokens de API & MCP -->
+      <div class="card p-6 rounded-2xl space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-4">
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="key" class="w-5 h-5 text-amber-400"></i>
+              Tokens de API para Outros Apps & MCP
+            </h3>
+            <p class="text-xs text-gray-400">Gere chaves de acesso com segurança para conectar agentes de IA, n8n, bots e seus sistemas externos</p>
+          </div>
+          <button onclick="openNewTokenModal()" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 transition shadow">
+            <i data-lucide="plus" class="w-4 h-4"></i> Novo Token de Integração
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-[#0f172a] text-gray-400 border-b border-gray-800 text-xs uppercase">
+              <tr>
+                <th class="p-3">Nome / Aplicação</th>
+                <th class="p-3">Token (Chave Secreta)</th>
+                <th class="p-3 text-center">Permissão</th>
+                <th class="p-3 text-center">Último Uso</th>
+                <th class="p-3 text-right">Ação</th>
+              </tr>
+            </thead>
+            <tbody id="tokensTableBody" class="divide-y divide-gray-800 font-mono text-xs">
+              <tr><td colspan="5" class="p-4 text-center text-gray-500">Carregando tokens...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Sub-seção: Usuários do Sistema -->
+      <div class="card p-6 rounded-2xl space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-4">
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="users" class="w-5 h-5 text-blue-400"></i>
+              Usuários com Acesso ao Painel Web
+            </h3>
+            <p class="text-xs text-gray-400">Gerencie operadores e administradores que podem entrar neste sistema</p>
+          </div>
+          <button onclick="openNewUserModal()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 transition shadow">
+            <i data-lucide="user-plus" class="w-4 h-4"></i> Adicionar Usuário
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-[#0f172a] text-gray-400 border-b border-gray-800 text-xs uppercase">
+              <tr>
+                <th class="p-3">Nome</th>
+                <th class="p-3">Usuário (@)</th>
+                <th class="p-3 text-center">Nível / Role</th>
+                <th class="p-3 text-center">Criado em</th>
+                <th class="p-3 text-right">Ação</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody" class="divide-y divide-gray-800 text-xs">
+              <tr><td colspan="5" class="p-4 text-center text-gray-500">Carregando usuários...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================
+         TAB 4: AUTOMAÇÃO (CRON JOBS)
          ========================================== -->
     <section id="tab-crons" class="hidden space-y-6">
       <div class="flex justify-between items-center">
@@ -275,7 +352,7 @@
     </section>
 
     <!-- ==========================================
-         TAB 4: CATÁLOGO DE SERVIÇOS
+         TAB 5: CATÁLOGO DE SERVIÇOS
          ========================================== -->
     <section id="tab-services" class="hidden space-y-4">
       <div class="flex flex-wrap justify-between items-center gap-4">
@@ -309,7 +386,7 @@
     </section>
 
     <!-- ==========================================
-         TAB 5: GESTOR MANUAL DE REFILL
+         TAB 6: REFILL MANUAL
          ========================================== -->
     <section id="tab-refill-tool" class="hidden space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -355,23 +432,56 @@
 
   </main>
 
-  <!-- Script da Aplicação -->
   <script>
     let allServices = [];
     let allAccounts = [];
     let localOrders = [];
+    let currentUser = null;
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
       lucide.createIcons();
+      await checkAuth();
       loadBalance();
       loadServices();
       loadAccounts();
       loadLocalOrders();
+      loadSecurityTab();
       loadCrons();
     });
 
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (!res.ok) {
+          window.location.href = '/login';
+          return;
+        }
+        const data = await res.json();
+        if (data.auth && data.auth.user) {
+          currentUser = data.auth.user;
+          document.getElementById('userNameDisplay').innerText = currentUser.name || currentUser.username;
+          document.getElementById('userRoleDisplay').innerText = (currentUser.role || 'operator').toUpperCase();
+          document.getElementById('userAvatar').innerText = (currentUser.name || currentUser.username).charAt(0).toUpperCase();
+        }
+      } catch (e) {
+        window.location.href = '/login';
+      }
+    }
+
+    async function handleLogout() {
+      if (!confirm('Deseja realmente sair?')) return;
+      try {
+        await fetch('/api/auth/logout', { method: 'POST' });
+        localStorage.removeItem('auth_user');
+        localStorage.removeItem('jwt_token');
+        window.location.href = '/login';
+      } catch (e) {
+        window.location.href = '/login';
+      }
+    }
+
     function switchTab(tabName) {
-      ['accounts', 'orders', 'new-order', 'crons', 'services', 'refill-tool'].forEach(t => {
+      ['accounts', 'orders', 'new-order', 'security', 'crons', 'services', 'refill-tool'].forEach(t => {
         const el = document.getElementById(`tab-${t}`);
         if (el) el.classList.toggle('hidden', t !== tabName);
         const btn = document.getElementById(`tabBtn-${t}`);
@@ -402,6 +512,143 @@
     }
 
     /* ========================================================
+       SEGURANÇA (TOKENS & USUÁRIOS)
+       ======================================================== */
+    async function loadSecurityTab() {
+      loadTokens();
+      loadUsers();
+    }
+
+    async function loadTokens() {
+      const tbody = document.getElementById('tokensTableBody');
+      try {
+        const res = await fetch('/api/auth/tokens');
+        const tokens = await res.json();
+        if (tokens.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500 font-sans">Nenhum token criado ainda.</td></tr>`;
+          return;
+        }
+        tbody.innerHTML = tokens.map(t => `
+          <tr class="hover:bg-gray-800/30 transition">
+            <td class="p-3 text-white font-bold font-sans">${t.name}</td>
+            <td class="p-3 font-mono text-amber-400">
+              <span class="bg-gray-900 px-2 py-1 rounded select-all">${t.token}</span>
+            </td>
+            <td class="p-3 text-center">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-sans font-bold bg-amber-950 text-amber-400 border border-amber-800">${t.role}</span>
+            </td>
+            <td class="p-3 text-center text-gray-400 font-sans">${t.last_used ? new Date(t.last_used).toLocaleString('pt-BR') : 'Nunca'}</td>
+            <td class="p-3 text-right font-sans">
+              <button onclick="deleteToken('${t.id}')" class="text-gray-400 hover:text-red-400 p-1" title="Revogar Token">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </td>
+          </tr>
+        `).join('');
+        lucide.createIcons();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function openNewTokenModal() {
+      const name = prompt('Nome da Aplicação / Integração (ex: "Servidor n8n", "Bot de IA", "Cursor"):');
+      if (!name) return;
+      try {
+        const res = await fetch('/api/auth/tokens', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert(`✅ Token criado com sucesso!\n\nNome: ${data.token.name}\nToken: ${data.token.token}\n\nCopie e guarde esta chave.`);
+          loadTokens();
+        }
+      } catch (e) {
+        alert('Erro ao criar token: ' + e.message);
+      }
+    }
+
+    async function deleteToken(id) {
+      if (!confirm('Deseja realmente revogar este token de API? Os sistemas que usam esta chave perderão acesso.')) return;
+      try {
+        await fetch(`/api/auth/tokens/${id}`, { method: 'DELETE' });
+        loadTokens();
+      } catch (e) {
+        alert('Erro: ' + e.message);
+      }
+    }
+
+    async function loadUsers() {
+      const tbody = document.getElementById('usersTableBody');
+      try {
+        const res = await fetch('/api/auth/users');
+        const users = await res.json();
+        tbody.innerHTML = users.map(u => `
+          <tr class="hover:bg-gray-800/30 transition">
+            <td class="p-3 text-white font-bold">${u.name}</td>
+            <td class="p-3 text-blue-400 font-mono">@${u.username}</td>
+            <td class="p-3 text-center">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${u.role === 'admin' ? 'bg-purple-950 text-purple-400 border border-purple-800' : 'bg-gray-800 text-gray-300'}">${u.role.toUpperCase()}</span>
+            </td>
+            <td class="p-3 text-center text-gray-400">${new Date(u.created_at).toLocaleDateString('pt-BR')}</td>
+            <td class="p-3 text-right">
+              <button onclick="deleteUser('${u.id}')" class="text-gray-400 hover:text-red-400 p-1" title="Excluir Usuário">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </td>
+          </tr>
+        `).join('');
+        lucide.createIcons();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function openNewUserModal() {
+      const name = prompt('Nome Completo:');
+      if (!name) return;
+      const username = prompt('Nome de Usuário (login):');
+      if (!username) return;
+      const password = prompt('Senha de Acesso:');
+      if (!password) return;
+      const role = prompt('Nível (admin ou operator):', 'operator');
+
+      try {
+        const res = await fetch('/api/auth/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, username, password, role })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert('✅ Usuário criado com sucesso!');
+          loadUsers();
+        } else {
+          alert('Erro: ' + data.error);
+        }
+      } catch (e) {
+        alert('Erro ao criar usuário: ' + e.message);
+      }
+    }
+
+    async function deleteUser(id) {
+      if (!confirm('Deseja realmente excluir este usuário?')) return;
+      try {
+        const res = await fetch(`/api/auth/users/${id}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          loadUsers();
+        } else {
+          alert(data.error);
+        }
+      } catch (e) {
+        alert('Erro: ' + e.message);
+      }
+    }
+
+    /* ========================================================
        CONTAS (ACCOUNTS)
        ======================================================== */
     async function loadAccounts() {
@@ -411,7 +658,6 @@
         allAccounts = await res.json();
         document.getElementById('accountsCount').innerText = allAccounts.length;
 
-        // Atualiza select de compra rápida
         const qSelect = document.getElementById('quickAccountSelect');
         qSelect.innerHTML = '<option value="">-- Escolher Conta Salva (Opcional) --</option>' +
           allAccounts.map(a => `<option value="${a.id}">${a.name} (${a.link})</option>`).join('');
@@ -454,7 +700,6 @@
                   </button>
                 </div>
 
-                <!-- Métricas -->
                 <div class="grid grid-cols-2 gap-3 mt-4 bg-gray-900/50 p-3 rounded-xl border border-gray-800/60">
                   <div>
                     <div class="text-[10px] uppercase font-bold text-gray-400">Meta / Teto</div>
@@ -466,7 +711,6 @@
                   </div>
                 </div>
 
-                <!-- Status de Queda -->
                 <div class="mt-3">
                   ${hasDrop ? `
                     <div class="bg-red-950/50 border border-red-800/60 text-red-400 text-xs px-3 py-2 rounded-xl flex items-center gap-2 animate-pulse">
@@ -482,7 +726,6 @@
                 </div>
               </div>
 
-              <!-- Ações -->
               <div class="pt-3 border-t border-gray-800/80 flex gap-2">
                 <button onclick="promptUpdateAccountFollowers('${acc.id}', ${acc.targetFollowers})" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold py-2 rounded-xl transition">
                   Atualizar Seguidores

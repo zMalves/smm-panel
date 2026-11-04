@@ -4,6 +4,10 @@ const smm = require('../services/smmClient');
 const storage = require('../services/storage');
 const checker = require('../services/followerChecker');
 const cronManager = require('../services/cronManager');
+const { authMiddleware } = require('../middlewares/auth');
+
+// Protege todas as rotas internas /api com authMiddleware
+router.use(authMiddleware);
 
 /**
  * GET /api/balance
@@ -58,14 +62,9 @@ router.get('/services', async (req, res) => {
    GESTÃO DE CONTAS (ACCOUNTS CRUD)
    ======================================================== */
 
-/**
- * GET /api/accounts
- * Lista todas as contas monitoradas com cálculo de queda e teto
- */
 router.get('/accounts', (req, res) => {
   const db = storage.loadData();
   const accountsWithStats = (db.accounts || []).map(acc => {
-    // Pedidos vinculados à conta
     const orders = (db.orders || []).filter(o => o.link === acc.link || o.accountId === acc.id);
     const drop = acc.currentFollowers !== null && acc.currentFollowers !== undefined && acc.currentFollowers < acc.targetFollowers
       ? (acc.targetFollowers - acc.currentFollowers)
@@ -83,10 +82,6 @@ router.get('/accounts', (req, res) => {
   res.json(accountsWithStats);
 });
 
-/**
- * POST /api/accounts
- * Cadastra ou atualiza uma conta monitorada
- */
 router.post('/accounts', (req, res) => {
   try {
     const { id, name, link, targetFollowers, currentFollowers, serviceId, notes, autoRefillEnabled } = req.body;
@@ -127,10 +122,6 @@ router.post('/accounts', (req, res) => {
   }
 });
 
-/**
- * DELETE /api/accounts/:id
- * Remove uma conta monitorada
- */
 router.delete('/accounts/:id', (req, res) => {
   try {
     const db = storage.loadData();
@@ -142,10 +133,6 @@ router.delete('/accounts/:id', (req, res) => {
   }
 });
 
-/**
- * POST /api/accounts/:id/update-followers
- * Atualiza os seguidores atuais de uma conta específica
- */
 router.post('/accounts/:id/update-followers', async (req, res) => {
   try {
     const { currentFollowers } = req.body;
@@ -179,10 +166,6 @@ router.post('/accounts/:id/update-followers', async (req, res) => {
    GESTÃO DE PEDIDOS (ORDERS)
    ======================================================== */
 
-/**
- * POST /api/orders
- * Criar Pedido (compras normais ou recompra com atualização da conta)
- */
 router.post('/orders', async (req, res) => {
   try {
     const { service, link, quantity, runs, interval, comments, accountId, addToTarget } = req.body;
@@ -197,7 +180,6 @@ router.post('/orders', async (req, res) => {
       const db = storage.loadData();
       const cleanLink = link.trim().replace(/\/+$/, '') + '/';
 
-      // Localiza ou vincula a conta monitorada
       let acc = (db.accounts || []).find(a => a.id === accountId || a.link.toLowerCase() === cleanLink.toLowerCase());
 
       const qtyNum = Number(quantity);
@@ -219,14 +201,12 @@ router.post('/orders', async (req, res) => {
       if (!db.orders) db.orders = [];
       db.orders.unshift(newEntry);
 
-      // Se a conta já existe e o usuário marcou somar ao teto
       if (acc) {
         if (addToTarget) {
           acc.targetFollowers = (acc.targetFollowers || 0) + qtyNum;
         }
         acc.lastChecked = new Date().toISOString();
       } else {
-        // Cria automaticamente o registro da conta para gerenciamento unificado
         db.accounts.push({
           id: `acc_${Date.now()}`,
           name: checker.extractUsername(cleanLink) || 'Conta Automática',
@@ -250,17 +230,11 @@ router.post('/orders', async (req, res) => {
   }
 });
 
-/**
- * GET /api/orders/local
- */
 router.get('/orders/local', (req, res) => {
   const db = storage.loadData();
   res.json(db.orders || []);
 });
 
-/**
- * POST /api/orders/sync
- */
 router.post('/orders/sync', async (req, res) => {
   try {
     await cronManager.executeSyncStatusTask();
@@ -271,9 +245,6 @@ router.post('/orders/sync', async (req, res) => {
   }
 });
 
-/**
- * POST /api/refill
- */
 router.post('/refill', async (req, res) => {
   try {
     const { order, orders } = req.body;
@@ -299,9 +270,6 @@ router.post('/refill', async (req, res) => {
   }
 });
 
-/**
- * GET /api/refill/status/:id
- */
 router.get('/refill/status/:id', async (req, res) => {
   try {
     const data = await smm.getRefillStatus(req.params.id);
@@ -311,9 +279,6 @@ router.get('/refill/status/:id', async (req, res) => {
   }
 });
 
-/**
- * POST /api/cancel
- */
 router.post('/cancel', async (req, res) => {
   try {
     const { orders } = req.body;
@@ -325,9 +290,10 @@ router.post('/cancel', async (req, res) => {
   }
 });
 
-/**
- * CRONS
- */
+/* ========================================================
+   CRONS
+   ======================================================== */
+
 router.get('/crons', (req, res) => {
   const db = storage.loadData();
   res.json({
