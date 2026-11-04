@@ -3,11 +3,10 @@ const storage = require('./storage');
 const smm = require('./smmClient');
 const checker = require('./followerChecker');
 
-// Armazena as tarefas ativas em memória
 const activeJobs = new Map();
 
 /**
- * 1. Tarefa de Verificação de Queda e Disparo de Refill
+ * 1. Tarefa de Verificação de Queda e Disparo de Refill Unificada por Conta e Pedido
  */
 async function executeRefillCheckTask() {
   const timestamp = new Date().toISOString();
@@ -15,50 +14,52 @@ async function executeRefillCheckTask() {
   const db = storage.loadData();
   const logs = [];
 
-  for (const order of db.orders) {
-    const target = order.targetAmount || (Number(order.start_count || 0) + Number(order.quantity || 0));
+  // 1. Atualiza e verifica contas monitoradas
+  for (const acc of (db.accounts || [])) {
+    if (!acc.autoRefillEnabled) continue;
 
-    // Se temos um link, consulta seguidores atuais na web (ou usa contagem registrada)
-    if (order.link) {
-      try {
-        const live = await checker.fetchCurrentFollowers(order.link);
-        if (live && live.followers !== null) {
-          order.currentFollowers = live.followers;
-          order.lastCheckedFollowers = timestamp;
-        }
-      } catch (e) {
-        console.error(`[CRON Refill] Erro ao consultar seguidores para ${order.link}:`, e.message);
+    // Checa contagem pública
+    try {
+      const live = await checker.fetchCurrentFollowers(acc.link);
+      if (live && live.followers !== null) {
+        acc.currentFollowers = live.followers;
+        acc.lastChecked = timestamp;
       }
+    } catch (e) {
+      console.error(`[CRON] Erro ao consultar ${acc.link}:`, e.message);
     }
 
-    // Avalia se caiu abaixo do teto
-    if (order.currentFollowers !== null && order.currentFollowers < target) {
-      const drop = target - order.currentFollowers;
-      order.needsRefill = true;
-      order.dropAmount = drop;
+    // Se houver queda abaixo da meta contratada
+    if (acc.currentFollowers !== null && acc.currentFollowers < acc.targetFollowers) {
+      const drop = acc.targetFollowers - acc.currentFollowers;
+      console.log(`[CRON] Queda detectada na conta ${acc.name} (${acc.link}): Meta=${acc.targetFollowers}, Atual=${acc.currentFollowers}, Queda=${drop}`);
 
-      console.log(`[CRON Refill] Queda detectada no pedido #${order.orderId}: Atual=${order.currentFollowers}, Teto=${target}, Drop=${drop}. Disparando refill...`);
-      try {
-        const refillRes = await smm.requestRefill(order.orderId);
-        order.lastRefillRequested = timestamp;
-        order.lastRefillResult = refillRes;
-        logs.push({
-          orderId: order.orderId,
-          link: order.link,
-          drop,
-          result: refillRes,
-          timestamp
-        });
-      } catch (err) {
-        console.error(`[CRON Refill] Falha ao acionar refill no pedido #${order.orderId}:`, err.message);
+      // Encontra pedidos concluídos vinculados a essa conta
+      const relatedOrders = (db.orders || []).filter(o =>
+        (o.accountId === acc.id || o.link === acc.link) &&
+        o.status === 'Completed'
+      );
+
+      // Dispara refill para o pedido elegível mais recente ou todos
+      for (const ord of relatedOrders) {
+        try {
+          const res = await smm.requestRefill(ord.orderId);
+          console.log(`[CRON] Refill solicitado para pedido #${ord.orderId}:`, res);
+          logs.push({
+            account: acc.name,
+            orderId: ord.orderId,
+            drop,
+            result: res,
+            timestamp
+          });
+        } catch (err) {
+          console.error(`[CRON] Falha no refill #${ord.orderId}:`, err.message);
+        }
       }
-    } else if (order.currentFollowers !== null) {
-      order.needsRefill = false;
-      order.dropAmount = 0;
     }
   }
 
-  // Registra histórico de execuções
+  // 2. Registra histórico
   if (!db.cronHistory) db.cronHistory = [];
   db.cronHistory.unshift({
     jobName: 'daily_refill_check',
@@ -66,8 +67,6 @@ async function executeRefillCheckTask() {
     actionsTriggered: logs.length,
     details: logs
   });
-
-  // Mantém apenas os últimos 50 registros no histórico
   if (db.cronHistory.length > 50) db.cronHistory = db.cronHistory.slice(0, 50);
 
   storage.saveData(db);
@@ -76,18 +75,18 @@ async function executeRefillCheckTask() {
 }
 
 /**
- * 2. Tarefa de Sincronização de Status dos Pedidos com o Provedor SMM
+ * 2. Tarefa de Sincronização de Status dos Pedidos
  */
 async function executeSyncStatusTask() {
   const timestamp = new Date().toISOString();
   console.log(`[CRON Sync] Sincronizando status dos pedidos às ${timestamp}...`);
   const db = storage.loadData();
-  const ids = db.orders.map(o => o.orderId).filter(Boolean);
+  const ids = (db.orders || []).map(o => o.orderId).filter(Boolean);
 
   if (ids.length > 0) {
     try {
       const statusMap = await smm.getOrderStatus(ids.slice(0, 100));
-      db.orders.forEach(o => {
+      (db.orders || []).forEach(o => {
         const live = statusMap[String(o.orderId)];
         if (live && !live.error) {
           o.status = live.status;
@@ -106,35 +105,13 @@ async function executeSyncStatusTask() {
 }
 
 /**
- * Inicializador das Crons Automáticas
+ * Inicializador
  */
 function initScheduler() {
   const db = storage.loadData();
-  if (!db.cronConfigs) {
-    // Configurações padrão
-    db.cronConfigs = [
-      {
-        id: 'daily_refill_check',
-        name: 'Verificação Diária de Quedas e Auto-Refill',
-        expression: '0 9 * * *', // Todos os dias às 09:00
-        enabled: true,
-        description: 'Checa todas as contas e solicita reposição automática se houver queda'
-      },
-      {
-        id: 'hourly_order_sync',
-        name: 'Sincronização de Status de Pedidos',
-        expression: '0 * * * *', // A cada 1 hora
-        enabled: true,
-        description: 'Atualiza start_count, status e remanescentes direto do provedor SMM'
-      }
-    ];
-    storage.saveData(db);
+  if (db.cronConfigs && Array.isArray(db.cronConfigs)) {
+    db.cronConfigs.forEach(cfg => scheduleJob(cfg));
   }
-
-  // Registra cada cron ativa
-  db.cronConfigs.forEach(cfg => {
-    scheduleJob(cfg);
-  });
 }
 
 function scheduleJob(cfg) {

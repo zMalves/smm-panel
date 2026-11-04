@@ -54,12 +54,138 @@ router.get('/services', async (req, res) => {
   }
 });
 
+/* ========================================================
+   GESTÃO DE CONTAS (ACCOUNTS CRUD)
+   ======================================================== */
+
+/**
+ * GET /api/accounts
+ * Lista todas as contas monitoradas com cálculo de queda e teto
+ */
+router.get('/accounts', (req, res) => {
+  const db = storage.loadData();
+  const accountsWithStats = (db.accounts || []).map(acc => {
+    // Pedidos vinculados à conta
+    const orders = (db.orders || []).filter(o => o.link === acc.link || o.accountId === acc.id);
+    const drop = acc.currentFollowers !== null && acc.currentFollowers !== undefined && acc.currentFollowers < acc.targetFollowers
+      ? (acc.targetFollowers - acc.currentFollowers)
+      : 0;
+
+    return {
+      ...acc,
+      ordersCount: orders.length,
+      dropAmount: drop,
+      needsRefill: drop > 0,
+      recentOrders: orders.slice(0, 5)
+    };
+  });
+
+  res.json(accountsWithStats);
+});
+
+/**
+ * POST /api/accounts
+ * Cadastra ou atualiza uma conta monitorada
+ */
+router.post('/accounts', (req, res) => {
+  try {
+    const { id, name, link, targetFollowers, currentFollowers, serviceId, notes, autoRefillEnabled } = req.body;
+    if (!link || !targetFollowers) {
+      return res.status(400).json({ error: 'link e targetFollowers (meta/teto) são obrigatórios' });
+    }
+
+    const db = storage.loadData();
+    if (!db.accounts) db.accounts = [];
+
+    const accountId = id || `acc_${Date.now()}`;
+    const cleanLink = link.trim().replace(/\/+$/, '') + '/';
+    const existingIdx = db.accounts.findIndex(a => a.id === accountId || a.link.toLowerCase() === cleanLink.toLowerCase());
+
+    const accountEntry = {
+      id: accountId,
+      name: name || checker.extractUsername(cleanLink) || 'Nova Conta',
+      platform: cleanLink.includes('instagram') ? 'instagram' : cleanLink.includes('tiktok') ? 'tiktok' : 'other',
+      link: cleanLink,
+      targetFollowers: Number(targetFollowers),
+      currentFollowers: currentFollowers !== undefined && currentFollowers !== null ? Number(currentFollowers) : Number(targetFollowers),
+      serviceId: serviceId ? Number(serviceId) : undefined,
+      autoRefillEnabled: autoRefillEnabled !== undefined ? Boolean(autoRefillEnabled) : true,
+      notes: notes || '',
+      lastChecked: new Date().toISOString()
+    };
+
+    if (existingIdx >= 0) {
+      db.accounts[existingIdx] = { ...db.accounts[existingIdx], ...accountEntry };
+    } else {
+      db.accounts.push(accountEntry);
+    }
+
+    storage.saveData(db);
+    res.json({ success: true, account: accountEntry });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * DELETE /api/accounts/:id
+ * Remove uma conta monitorada
+ */
+router.delete('/accounts/:id', (req, res) => {
+  try {
+    const db = storage.loadData();
+    db.accounts = (db.accounts || []).filter(a => a.id !== req.params.id);
+    storage.saveData(db);
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * POST /api/accounts/:id/update-followers
+ * Atualiza os seguidores atuais de uma conta específica
+ */
+router.post('/accounts/:id/update-followers', async (req, res) => {
+  try {
+    const { currentFollowers } = req.body;
+    const db = storage.loadData();
+    const acc = (db.accounts || []).find(a => a.id === req.params.id);
+
+    if (!acc) return res.status(404).json({ error: 'Conta não encontrada' });
+
+    let followers = currentFollowers !== undefined && currentFollowers !== null ? Number(currentFollowers) : null;
+
+    if (followers === null) {
+      const live = await checker.fetchCurrentFollowers(acc.link);
+      if (live && live.followers !== null) {
+        followers = live.followers;
+      }
+    }
+
+    if (followers !== null) {
+      acc.currentFollowers = followers;
+      acc.lastChecked = new Date().toISOString();
+    }
+
+    storage.saveData(db);
+    res.json({ success: true, account: acc });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/* ========================================================
+   GESTÃO DE PEDIDOS (ORDERS)
+   ======================================================== */
+
 /**
  * POST /api/orders
+ * Criar Pedido (compras normais ou recompra com atualização da conta)
  */
 router.post('/orders', async (req, res) => {
   try {
-    const { service, link, quantity, runs, interval, comments } = req.body;
+    const { service, link, quantity, runs, interval, comments, accountId, addToTarget } = req.body;
 
     if (!service || !link || !quantity) {
       return res.status(400).json({ error: 'service, link e quantity são obrigatórios' });
@@ -69,22 +195,52 @@ router.post('/orders', async (req, res) => {
 
     if (orderRes.order) {
       const db = storage.loadData();
+      const cleanLink = link.trim().replace(/\/+$/, '') + '/';
+
+      // Localiza ou vincula a conta monitorada
+      let acc = (db.accounts || []).find(a => a.id === accountId || a.link.toLowerCase() === cleanLink.toLowerCase());
+
+      const qtyNum = Number(quantity);
       const newEntry = {
         orderId: orderRes.order,
         serviceId: Number(service),
-        link,
-        quantity: Number(quantity),
+        link: cleanLink,
+        accountId: acc ? acc.id : undefined,
+        quantity: qtyNum,
         runs: runs ? Number(runs) : undefined,
         interval: interval ? Number(interval) : undefined,
         status: 'Pending',
         charge: '0',
         start_count: '0',
-        targetAmount: Number(quantity),
-        currentFollowers: null,
-        needsRefill: false,
+        targetAmount: qtyNum,
         createdAt: new Date().toISOString()
       };
+
+      if (!db.orders) db.orders = [];
       db.orders.unshift(newEntry);
+
+      // Se a conta já existe e o usuário marcou somar ao teto
+      if (acc) {
+        if (addToTarget) {
+          acc.targetFollowers = (acc.targetFollowers || 0) + qtyNum;
+        }
+        acc.lastChecked = new Date().toISOString();
+      } else {
+        // Cria automaticamente o registro da conta para gerenciamento unificado
+        db.accounts.push({
+          id: `acc_${Date.now()}`,
+          name: checker.extractUsername(cleanLink) || 'Conta Automática',
+          platform: cleanLink.includes('instagram') ? 'instagram' : 'other',
+          link: cleanLink,
+          targetFollowers: qtyNum,
+          currentFollowers: qtyNum,
+          serviceId: Number(service),
+          autoRefillEnabled: true,
+          notes: 'Criada automaticamente no novo pedido',
+          lastChecked: new Date().toISOString()
+        });
+      }
+
       storage.saveData(db);
     }
 
@@ -100,59 +256,6 @@ router.post('/orders', async (req, res) => {
 router.get('/orders/local', (req, res) => {
   const db = storage.loadData();
   res.json(db.orders || []);
-});
-
-/**
- * POST /api/orders/update-followers
- */
-router.post('/orders/update-followers', async (req, res) => {
-  try {
-    const { orderId, currentFollowers } = req.body;
-    const db = storage.loadData();
-    const order = db.orders.find(o => o.orderId === Number(orderId));
-
-    if (!order) {
-      return res.status(404).json({ error: 'Pedido não encontrado' });
-    }
-
-    let followers = currentFollowers !== undefined && currentFollowers !== null
-      ? Number(currentFollowers)
-      : null;
-
-    if (followers === null) {
-      const live = await checker.fetchCurrentFollowers(order.link);
-      if (live && live.followers !== null) {
-        followers = live.followers;
-      }
-    }
-
-    if (followers !== null) {
-      order.currentFollowers = followers;
-      order.lastCheckedFollowers = new Date().toISOString();
-
-      const target = order.targetAmount || (Number(order.start_count || 0) + Number(order.quantity || 0));
-      order.targetAmount = target;
-      order.needsRefill = followers < target;
-      order.dropAmount = Math.max(0, target - followers);
-    }
-
-    storage.saveData(db);
-    res.json({ success: true, order });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-/**
- * POST /api/orders/auto-refill-check
- */
-router.post('/orders/auto-refill-check', async (req, res) => {
-  try {
-    const result = await cronManager.executeRefillCheckTask();
-    res.json(result);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
 });
 
 /**
@@ -182,6 +285,7 @@ router.post('/refill', async (req, res) => {
     const result = await smm.requestRefill(target);
 
     const db = storage.loadData();
+    if (!db.refillLogs) db.refillLogs = [];
     db.refillLogs.unshift({
       target,
       result,
@@ -213,9 +317,7 @@ router.get('/refill/status/:id', async (req, res) => {
 router.post('/cancel', async (req, res) => {
   try {
     const { orders } = req.body;
-    if (!orders) {
-      return res.status(400).json({ error: 'Informe orders' });
-    }
+    if (!orders) return res.status(400).json({ error: 'Informe orders' });
     const result = await smm.cancelOrders(orders);
     res.json(result);
   } catch (err) {
@@ -224,8 +326,7 @@ router.post('/cancel', async (req, res) => {
 });
 
 /**
- * GET /api/crons
- * Retorna as crons configuradas e o histórico de execuções
+ * CRONS
  */
 router.get('/crons', (req, res) => {
   const db = storage.loadData();
@@ -235,10 +336,6 @@ router.get('/crons', (req, res) => {
   });
 });
 
-/**
- * POST /api/crons
- * Cria ou atualiza uma cron job
- */
 router.post('/crons', (req, res) => {
   const { id, name, expression, enabled, description } = req.body;
   if (!name || !expression) {
@@ -271,10 +368,6 @@ router.post('/crons', (req, res) => {
   res.json({ success: true, cron: newConfig });
 });
 
-/**
- * POST /api/crons/trigger/:id
- * Dispara manualmente uma cron imediatamente
- */
 router.post('/crons/trigger/:id', async (req, res) => {
   try {
     if (req.params.id === 'daily_refill_check') {
