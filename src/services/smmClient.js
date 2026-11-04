@@ -1,4 +1,4 @@
-const API_KEY = process.env.SMM_API_KEY || "f188ca3f9d99fb75b083fa70bf5337a8";
+const API_KEY = process.env.SMM_API_KEY;
 const API_URL = process.env.SMM_API_URL || "https://smmpainel.com/api/v2";
 
 /**

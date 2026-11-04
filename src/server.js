@@ -20,6 +20,9 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+// Documentação MCP e API (Estática)
+app.use('/docs', express.static(path.join(__dirname, '..', 'docs')));
+
 // Rotas de Autenticação e Usuários (Login, Logout, Tokens)
 app.use('/api/auth', authRoutes);
 

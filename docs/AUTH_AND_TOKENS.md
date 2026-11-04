@@ -13,7 +13,7 @@ Para qualquer requisição às APIs protegidas (`/api/*`) ou às ferramentas MCP
 ### Opção A: Header `X-API-Key` (Recomendado)
 ```http
 POST /mcp/call HTTP/1.1
-Host: 100.87.205.46:3070
+Host: SEU_IP_DO_SERVIDOR:3070
 Content-Type: application/json
 X-API-Key: smm_sec_seu_token_aqui
 ```
@@ -21,7 +21,7 @@ X-API-Key: smm_sec_seu_token_aqui
 ### Opção B: Header `Authorization: Bearer`
 ```http
 POST /api/orders HTTP/1.1
-Host: 100.87.205.46:3070
+Host: SEU_IP_DO_SERVIDOR:3070
 Content-Type: application/json
 Authorization: Bearer smm_sec_seu_token_aqui
 ```
@@ -36,7 +36,7 @@ No arquivo de configuração do seu cliente MCP (ex: `claude_desktop_config.json
 {
   "mcpServers": {
     "smm-panel": {
-      "url": "http://100.87.205.46:3070/mcp/tools",
+      "url": "http://SEU_IP_DO_SERVIDOR:3070/mcp/tools",
       "transport": "http",
       "headers": {
         "X-API-Key": "smm_sec_seu_token_aqui"

@@ -6,9 +6,9 @@ Este documento descreve como conectar agentes de IA (Cursor, Antigravity, Claude
 
 ## 📌 Informações do Servidor MCP
 
-- **URL Base:** `http://100.87.205.46:3070/mcp`
-- **Descoberta de Ferramentas (Manifest):** `GET http://100.87.205.46:3070/mcp/tools`
-- **Execução de Ferramentas (Tool Call):** `POST http://100.87.205.46:3070/mcp/call`
+- **URL Base:** `http://SEU_IP_DO_SERVIDOR:3070/mcp`
+- **Descoberta de Ferramentas (Manifest):** `GET http://SEU_IP_DO_SERVIDOR:3070/mcp/tools`
+- **Execução de Ferramentas (Tool Call):** `POST http://SEU_IP_DO_SERVIDOR:3070/mcp/call`
 - **Content-Type:** `application/json`
 
 ---
@@ -136,7 +136,7 @@ No seu arquivo `mcpServers` (ex: `claude_desktop_config.json` ou settings do seu
 {
   "mcpServers": {
     "smm-panel": {
-      "url": "http://100.87.205.46:3070/mcp/tools",
+      "url": "http://SEU_IP_DO_SERVIDOR:3070/mcp/tools",
       "transport": "http"
     }
   }

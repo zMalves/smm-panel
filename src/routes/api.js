@@ -62,6 +62,31 @@ router.get('/services', async (req, res) => {
    GESTÃO DE CONTAS (ACCOUNTS CRUD)
    ======================================================== */
 
+function calculateWarranty(createdAtStr, serviceName = '') {
+  if (!createdAtStr) return null;
+  const createdDate = new Date(createdAtStr);
+  if (isNaN(createdDate.getTime())) return null;
+
+  // Analisa dias de garantia pelo nome do serviço (ex: R30, AR30 -> 30 dias; R60 -> 60 dias; R365 -> 365 dias)
+  let days = 30; // padrão do provedor para serviços com reposição
+  const match = (serviceName || '').match(/(?:AR|R)(\d+)/i);
+  if (match) {
+    days = parseInt(match[1], 10);
+  }
+
+  const warrantyUntil = new Date(createdDate.getTime() + days * 24 * 60 * 60 * 1000);
+  const now = new Date();
+  const diffTime = warrantyUntil - now;
+  const daysRemaining = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  return {
+    warrantyDays: days,
+    warrantyUntil: warrantyUntil.toISOString(),
+    isExpired: daysRemaining < 0,
+    daysRemaining: Math.max(0, daysRemaining)
+  };
+}
+
 router.get('/accounts', (req, res) => {
   const db = storage.loadData();
   const accountsWithStats = (db.accounts || []).map(acc => {
@@ -70,12 +95,25 @@ router.get('/accounts', (req, res) => {
       ? (acc.targetFollowers - acc.currentFollowers)
       : 0;
 
+    // Calcula a garantia com base no pedido mais recente ou ativo da conta
+    let latestWarranty = null;
+    if (orders.length > 0) {
+      // Ordena por data de criação decrescente
+      const sortedOrders = [...orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      const latestOrder = sortedOrders[0];
+      latestWarranty = calculateWarranty(latestOrder.createdAt, latestOrder.serviceName);
+    }
+
     return {
       ...acc,
       ordersCount: orders.length,
       dropAmount: drop,
       needsRefill: drop > 0,
-      recentOrders: orders.slice(0, 5)
+      warranty: latestWarranty,
+      recentOrders: orders.slice(0, 5).map(o => ({
+        ...o,
+        warranty: calculateWarranty(o.createdAt, o.serviceName)
+      }))
     };
   });
 
@@ -124,9 +162,7 @@ router.post('/accounts', (req, res) => {
 
 router.delete('/accounts/:id', (req, res) => {
   try {
-    const db = storage.loadData();
-    db.accounts = (db.accounts || []).filter(a => a.id !== req.params.id);
-    storage.saveData(db);
+    storage.deleteAccount(req.params.id);
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -182,10 +218,21 @@ router.post('/orders', async (req, res) => {
 
       let acc = (db.accounts || []).find(a => a.id === accountId || a.link.toLowerCase() === cleanLink.toLowerCase());
 
+      // Busca o nome do serviço no catálogo
+      let serviceName = '';
+      try {
+        const services = await smm.getServices();
+        const foundSvc = Array.isArray(services) && services.find(s => String(s.service) === String(service));
+        if (foundSvc) serviceName = foundSvc.name;
+      } catch (e) {
+        // Fallback silencioso
+      }
+
       const qtyNum = Number(quantity);
       const newEntry = {
         orderId: orderRes.order,
         serviceId: Number(service),
+        serviceName: serviceName || `Serviço #${service}`,
         link: cleanLink,
         accountId: acc ? acc.id : undefined,
         quantity: qtyNum,
@@ -232,7 +279,20 @@ router.post('/orders', async (req, res) => {
 
 router.get('/orders/local', (req, res) => {
   const db = storage.loadData();
-  res.json(db.orders || []);
+  const ordersWithWarranty = (db.orders || []).map(o => ({
+    ...o,
+    warranty: calculateWarranty(o.createdAt, o.serviceName)
+  }));
+  res.json(ordersWithWarranty);
+});
+
+router.post('/orders/auto-refill-check', async (req, res) => {
+  try {
+    const result = await cronManager.executeRefillCheckTask();
+    res.json({ success: true, ...result });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 router.post('/orders/sync', async (req, res) => {

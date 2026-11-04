@@ -117,6 +117,11 @@
           <i data-lucide="repeat" class="w-4 h-4"></i>
           <span>Refill Manual</span>
         </button>
+
+        <button onclick="switchTab('mcp-docs')" id="nav-mcp-docs" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm transition nav-btn-inactive">
+          <i data-lucide="terminal" class="w-4 h-4 text-indigo-600"></i>
+          <span>Documentação MCP</span>
+        </button>
       </nav>
     </div>
 
@@ -160,10 +165,6 @@
             <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
           </button>
         </div>
-
-        <a href="/docs/MCP_SPEC.md" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-600 hover:text-blue-600 font-medium px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:border-blue-300 shadow-sm transition">
-          <i data-lucide="code" class="w-3.5 h-3.5 text-blue-600"></i> Docs MCP
-        </a>
       </div>
     </header>
 
@@ -208,20 +209,22 @@
 
         <div class="card-clean rounded-2xl overflow-hidden">
           <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm">
-              <thead class="bg-slate-50/80 text-slate-500 border-b border-slate-200 text-[11px] uppercase tracking-wider font-bold">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50/80 text-slate-500 border-b border-slate-200 text-[10px] uppercase tracking-wider font-bold whitespace-nowrap">
                 <tr>
-                  <th class="p-4">ID</th>
-                  <th class="p-4">Serviço / Link</th>
-                  <th class="p-4 text-center">Início</th>
-                  <th class="p-4 text-center">Quantidade</th>
-                  <th class="p-4 text-center">Teto Esperado</th>
-                  <th class="p-4 text-center">Status</th>
-                  <th class="p-4 text-right">Ação</th>
+                  <th class="p-3 w-16">ID</th>
+                  <th class="p-3">Serviço / Link</th>
+                  <th class="p-3 text-center">Data Pedido</th>
+                  <th class="p-3 text-center">Garantia</th>
+                  <th class="p-3 text-center">Início</th>
+                  <th class="p-3 text-center">Quantidade</th>
+                  <th class="p-3 text-center">Teto</th>
+                  <th class="p-3 text-center">Status</th>
+                  <th class="p-3 text-center w-16">Ação</th>
                 </tr>
               </thead>
               <tbody id="ordersTableBody" class="divide-y divide-slate-100">
-                <tr><td colspan="7" class="p-6 text-center text-slate-400">Carregando pedidos...</td></tr>
+                <tr><td colspan="9" class="p-6 text-center text-slate-400">Carregando pedidos...</td></tr>
               </tbody>
             </table>
           </div>
@@ -495,6 +498,121 @@
         </div>
       </section>
 
+      <!-- ==========================================
+           TAB 7: DOCUMENTAÇÃO MCP (INTERATIVA)
+           ========================================== -->
+      <section id="tab-mcp-docs" class="hidden space-y-6">
+        <div class="card-clean p-6 rounded-2xl space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                <i data-lucide="cpu" class="w-5 h-5 text-indigo-600"></i> Especificação Model Context Protocol (MCP)
+              </h3>
+              <p class="text-xs text-slate-500 mt-1">
+                Conecte seus agentes de inteligência artificial ou sistemas externos via protocolo padronizado.
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span> Servidor MCP Ativo
+              </span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/80 space-y-2">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Descoberta de Ferramentas</div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700">GET</span>
+                <code class="text-xs font-mono font-semibold text-slate-800">/mcp/tools</code>
+              </div>
+              <p class="text-[11px] text-slate-500">Retorna schema JSON com todas as ferramentas de IA disponíveis.</p>
+            </div>
+
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/80 space-y-2">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Execução de Ferramentas</div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700">POST</span>
+                <code class="text-xs font-mono font-semibold text-slate-800">/mcp/call</code>
+              </div>
+              <p class="text-[11px] text-slate-500">Executa a tool via corpo JSON com <code>{"name": "...", "arguments": {}}</code>.</p>
+            </div>
+          </div>
+
+          <!-- Tabela com as 9 ferramentas -->
+          <div class="space-y-3 pt-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Catálogo de Ferramentas MCP</h4>
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-50 text-slate-500 font-semibold border-b border-slate-200">
+                  <tr>
+                    <th class="p-3">Ferramenta</th>
+                    <th class="p-3">Descrição</th>
+                    <th class="p-3">Argumentos</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 font-sans">
+                  <tr>
+                    <td class="p-3 font-mono font-bold text-blue-600">get_balance</td>
+                    <td class="p-3 text-slate-600">Consulta saldo disponível em conta (BRL).</td>
+                    <td class="p-3 text-slate-400 font-mono text-[11px]">Nenhum</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-mono font-bold text-blue-600">list_services</td>
+                    <td class="p-3 text-slate-600">Lista catálogo de serviços disponíveis com filtro por termo ou categoria.</td>
+                    <td class="p-3 text-slate-500 font-mono text-[11px]">category?, search?</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-mono font-bold text-blue-600">create_order</td>
+                    <td class="p-3 text-slate-600">Cria pedido de seguidores ou curtidas para um link.</td>
+                    <td class="p-3 text-slate-500 font-mono text-[11px]">service (int), link (url), quantity (int)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-mono font-bold text-blue-600">get_order_status</td>
+                    <td class="p-3 text-slate-600">Consulta status, start_count e remanescentes do pedido.</td>
+                    <td class="p-3 text-slate-500 font-mono text-[11px]">order_id (int/str)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-mono font-bold text-blue-600">request_refill</td>
+                    <td class="p-3 text-slate-600">Solicita reposição (refill) para pedidos compatíveis.</td>
+                    <td class="p-3 text-slate-500 font-mono text-[11px]">order_id (int)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-mono font-bold text-blue-600">get_refill_status</td>
+                    <td class="p-3 text-slate-600">Consulta andamento da solicitação de reposição.</td>
+                    <td class="p-3 text-slate-500 font-mono text-[11px]">refill_id (int)</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-mono font-bold text-blue-600">list_accounts</td>
+                    <td class="p-3 text-slate-600">Lista contas monitoradas com metas, seguidores atuais e drop amount.</td>
+                    <td class="p-3 text-slate-400 font-mono text-[11px]">Nenhum</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-mono font-bold text-blue-600">manage_account</td>
+                    <td class="p-3 text-slate-600">Cria ou ajusta metas e links de contas monitoradas.</td>
+                    <td class="p-3 text-slate-500 font-mono text-[11px]">name, link, targetFollowers, autoRefillEnabled</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-mono font-bold text-blue-600">run_refill_check</td>
+                    <td class="p-3 text-slate-600">Dispara a verificação manual de quedas e reposição automática.</td>
+                    <td class="p-3 text-slate-400 font-mono text-[11px]">Nenhum</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Exemplo cURL / JSON -->
+          <div class="space-y-2 pt-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Exemplo de Requisição cURL</h4>
+            <pre class="bg-slate-900 text-slate-200 p-4 rounded-xl text-xs font-mono overflow-x-auto">curl -X POST http://SEU_IP_DO_SERVIDOR:3070/mcp/call \
+  -H "X-API-Key: smm_sec_..." \
+  -H "Content-Type: application/json" \
+  -d '{"name": "get_balance", "arguments": {}}'</pre>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -671,6 +789,12 @@
     document.addEventListener("DOMContentLoaded", async () => {
       lucide.createIcons();
       await checkAuth();
+
+      // Inicializa a aba com base no parâmetro ?tab= da URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialTab = urlParams.get('tab') || 'accounts';
+      switchTab(initialTab, false);
+
       loadBalance();
       loadServices();
       loadAccounts();
@@ -763,7 +887,7 @@
     }
 
     /* ========================================================
-       TABS NAVIGATION
+       TABS NAVIGATION & URL ROUTING
        ======================================================== */
     const tabTitles = {
       'accounts': 'Gestão de Contas Monitoradas',
@@ -772,11 +896,16 @@
       'security': 'Segurança: Tokens MCP & Usuários',
       'crons': 'Tarefas Agendadas (Cron Jobs)',
       'services': 'Catálogo de Preços da API',
-      'refill-tool': 'Ferramenta Manual de Refill'
+      'refill-tool': 'Ferramenta Manual de Refill',
+      'mcp-docs': 'Documentação Model Context Protocol (MCP)'
     };
 
-    function switchTab(tabName) {
-      ['accounts', 'orders', 'new-order', 'security', 'crons', 'services', 'refill-tool'].forEach(t => {
+    const validTabs = ['accounts', 'orders', 'new-order', 'security', 'crons', 'services', 'refill-tool', 'mcp-docs'];
+
+    function switchTab(tabName, updateUrl = true) {
+      if (!validTabs.includes(tabName)) tabName = 'accounts';
+
+      validTabs.forEach(t => {
         const el = document.getElementById(`tab-${t}`);
         if (el) el.classList.toggle('hidden', t !== tabName);
         const navBtn = document.getElementById(`nav-${t}`);
@@ -789,8 +918,21 @@
         }
       });
       document.getElementById('pageTitle').innerText = tabTitles[tabName] || 'Painel SMM Pro';
+      
+      if (updateUrl) {
+        const url = new URL(window.location);
+        url.searchParams.set('tab', tabName);
+        window.history.pushState({ tab: tabName }, '', url);
+      }
       lucide.createIcons();
     }
+
+    // Gerenciador do botão Voltar/Avançar do navegador
+    window.addEventListener('popstate', (e) => {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get('tab') || 'accounts';
+      switchTab(tab, false);
+    });
 
     /* ========================================================
        SALDO
@@ -873,6 +1015,25 @@
                     <div class="text-[10px] uppercase font-bold text-slate-400">Atual Registrado</div>
                     <div class="font-bold text-lg ${hasDrop ? 'text-red-600' : 'text-emerald-600'} font-mono">${acc.currentFollowers ?? '-'}</div>
                   </div>
+                </div>
+
+                <!-- Garantia e Data de Renovação -->
+                <div class="mt-3 p-3 rounded-2xl border ${acc.warranty ? (acc.warranty.isExpired ? 'bg-slate-100 border-slate-200 text-slate-600' : 'bg-blue-50/60 border-blue-100 text-blue-900') : 'bg-slate-50 border-slate-100 text-slate-500'} text-xs">
+                  <div class="flex items-center justify-between font-medium">
+                    <span class="flex items-center gap-1.5 font-bold">
+                      <i data-lucide="shield-check" class="w-3.5 h-3.5 ${acc.warranty && !acc.warranty.isExpired ? 'text-blue-600' : 'text-slate-400'}"></i>
+                      Garantia / Refill
+                    </span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded-full font-bold ${acc.warranty ? (acc.warranty.isExpired ? 'bg-slate-200 text-slate-700' : 'bg-blue-100 text-blue-700') : 'bg-slate-200 text-slate-600'}">
+                      ${acc.warranty ? (acc.warranty.isExpired ? 'Expirada' : `${acc.warranty.daysRemaining} dias restantes`) : 'Sem pedidos'}
+                    </span>
+                  </div>
+                  ${acc.warranty ? `
+                    <div class="mt-1.5 flex justify-between text-[11px] text-slate-500 font-sans">
+                      <span>Último pedido: <b>${new Date(acc.recentOrders[0]?.createdAt).toLocaleDateString('pt-BR')}</b></span>
+                      <span>Garantia até: <b>${new Date(acc.warranty.warrantyUntil).toLocaleDateString('pt-BR')}</b></span>
+                    </div>
+                  ` : ''}
                 </div>
 
                 <div class="mt-3">
@@ -992,24 +1153,49 @@
 
         tbody.innerHTML = localOrders.map(o => {
           const teto = o.targetAmount || (parseInt(o.start_count || 0) + parseInt(o.quantity || 0));
+          const dateStr = o.createdAt ? new Date(o.createdAt).toLocaleDateString('pt-BR') : '-';
+          const timeStr = o.createdAt ? new Date(o.createdAt).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '';
+          const w = o.warranty;
+          const warrantyUntilStr = w ? new Date(w.warrantyUntil).toLocaleDateString('pt-BR') : '-';
+
           return `
-            <tr class="hover:bg-slate-50/60 transition">
-              <td class="p-4 font-mono font-bold text-slate-900">#${o.orderId}</td>
-              <td class="p-4">
-                <div class="font-bold text-slate-800">${o.serviceName || 'Serviço #' + o.serviceId}</div>
-                <a href="${o.link}" target="_blank" class="text-blue-600 hover:underline text-xs flex items-center gap-1 mt-0.5">
-                  ${o.link} <i data-lucide="external-link" class="w-3 h-3"></i>
+            <tr class="hover:bg-slate-50/60 transition text-xs">
+              <td class="p-3 font-mono font-bold text-slate-900 whitespace-nowrap">#${o.orderId}</td>
+              <td class="p-3 max-w-[240px]">
+                <div class="font-bold text-slate-800 truncate" title="${o.serviceName || 'Serviço #' + o.serviceId}">${o.serviceName || 'Serviço #' + o.serviceId}</div>
+                <a href="${o.link}" target="_blank" class="text-blue-600 hover:underline text-[11px] flex items-center gap-1 mt-0.5 truncate" title="${o.link}">
+                  ${o.link} <i data-lucide="external-link" class="w-2.5 h-2.5 flex-shrink-0"></i>
                 </a>
               </td>
-              <td class="p-4 text-center font-mono text-slate-500">${o.start_count ?? '-'}</td>
-              <td class="p-4 text-center font-bold text-slate-900">${o.quantity}</td>
-              <td class="p-4 text-center font-mono font-bold text-blue-600">${teto}</td>
-              <td class="p-4 text-center">
-                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">${o.status}</span>
+              <td class="p-3 text-center whitespace-nowrap">
+                <div class="font-medium text-slate-800 text-[11px]">${dateStr}</div>
+                <div class="text-[9px] text-slate-400 font-mono">${timeStr}</div>
               </td>
-              <td class="p-4 text-right">
-                <button onclick="requestOrderRefill(${o.orderId})" class="bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-xl transition shadow-sm">
-                  Repor ♻️
+              <td class="p-3 text-center whitespace-nowrap">
+                <div class="inline-flex flex-col items-center">
+                  <span class="text-[11px] font-bold ${w && !w.isExpired ? 'text-blue-700' : 'text-slate-500'}">
+                    ${warrantyUntilStr}
+                  </span>
+                  <span class="text-[9px] font-semibold px-2 py-0.5 rounded-full mt-0.5 ${
+                    w && !w.isExpired ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-slate-100 text-slate-500'
+                  }">
+                    ${w ? (w.isExpired ? 'Expirada' : `${w.daysRemaining} dias`) : 'Sem garantia'}
+                  </span>
+                </div>
+              </td>
+              <td class="p-3 text-center font-mono text-slate-600 font-semibold whitespace-nowrap">${o.start_count ?? '-'}</td>
+              <td class="p-3 text-center font-bold text-slate-900 whitespace-nowrap">${o.quantity}</td>
+              <td class="p-3 text-center font-mono font-bold text-blue-600 whitespace-nowrap">${teto}</td>
+              <td class="p-3 text-center whitespace-nowrap">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                  o.status === 'Completed' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :
+                  o.status === 'Processing' || o.status === 'In progress' ? 'bg-amber-50 text-amber-700 border border-amber-200' :
+                  'bg-blue-50 text-blue-700 border border-blue-200'
+                }">${o.status}</span>
+              </td>
+              <td class="p-3 text-center whitespace-nowrap">
+                <button onclick="requestOrderRefill(${o.orderId})" class="p-2 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-700 hover:text-blue-600 transition shadow-sm inline-flex items-center justify-center" title="Solicitar Reposição (Refill)">
+                  <i data-lucide="repeat" class="w-3.5 h-3.5"></i>
                 </button>
               </td>
             </tr>
@@ -1292,21 +1478,37 @@
 
     function renderCatalogTable(services) {
       const tbody = document.getElementById('catalogTableBody');
-      tbody.innerHTML = services.map(s => `
-        <tr class="hover:bg-slate-50/60 transition">
-          <td class="p-3.5 font-mono font-bold text-slate-500">#${s.service}</td>
-          <td class="p-3.5 font-medium text-slate-800">${s.name}</td>
-          <td class="p-3.5 text-slate-500">${s.category || '-'}</td>
-          <td class="p-3.5 text-center font-bold text-slate-900 font-mono">R$ ${parseFloat(s.rate).toFixed(2)}</td>
-          <td class="p-3.5 text-center text-slate-500 font-mono">${s.min} / ${s.max}</td>
-          <td class="p-3.5 text-center">${s.refill ? '<span class="text-emerald-600 font-bold">Sim</span>' : '<span class="text-slate-400">Não</span>'}</td>
-          <td class="p-3.5 text-center">
-            <button onclick="selectServiceForOrder(${s.service})" class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white px-2.5 py-1 rounded-lg transition font-semibold">
-              Pedir
-            </button>
-          </td>
-        </tr>
-      `).join('');
+      tbody.innerHTML = services.map(s => {
+        const hasRefill = s.refill === true || /AR\d+|R\d+|refill|reposi/i.test(s.name);
+        const matchDays = s.name.match(/(?:AR|R)(\d+)/i);
+        const isAuto = /AR\d+/i.test(s.name);
+        const days = matchDays ? matchDays[1] : (hasRefill ? '30' : null);
+
+        let refillBadge = '<span class="text-slate-400 font-medium">Não</span>';
+        if (hasRefill) {
+          if (isAuto) {
+            refillBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200" title="Auto-Refill pelo fornecedor">Auto ${days}d ♻️</span>`;
+          } else {
+            refillBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200" title="Garantia de reposição por ${days} dias">${days} dias ♻️</span>`;
+          }
+        }
+
+        return `
+          <tr class="hover:bg-slate-50/60 transition">
+            <td class="p-3.5 font-mono font-bold text-slate-500">#${s.service}</td>
+            <td class="p-3.5 font-medium text-slate-800">${s.name}</td>
+            <td class="p-3.5 text-slate-500">${s.category || '-'}</td>
+            <td class="p-3.5 text-center font-bold text-slate-900 font-mono">R$ ${parseFloat(s.rate).toFixed(2)}</td>
+            <td class="p-3.5 text-center text-slate-500 font-mono">${s.min} / ${s.max}</td>
+            <td class="p-3.5 text-center whitespace-nowrap">${refillBadge}</td>
+            <td class="p-3.5 text-center">
+              <button onclick="selectServiceForOrder(${s.service})" class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white px-2.5 py-1 rounded-lg transition font-semibold">
+                Pedir
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
     }
 
     function selectServiceForOrder(serviceId) {
@@ -1350,12 +1552,16 @@
     async function runAutoRefillCheck() {
       try {
         const res = await fetch('/api/orders/auto-refill-check', { method: 'POST' });
+        if (!res.ok) {
+          const errText = await res.text();
+          throw new Error(errText || 'Falha ao executar verificação');
+        }
         const data = await res.json();
         showToast(`Verificação concluída! ${data.triggered || 0} reposição(ões) solicitada(s).`, 'success', 'Auto-Refill');
         loadAccounts();
         loadLocalOrders();
       } catch (e) {
-        showToast(e.message, 'error');
+        showToast(e.message, 'error', 'Erro no Auto-Refill');
       }
     }
 

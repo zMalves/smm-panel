@@ -91,14 +91,14 @@ db.exec(`
   );
 `);
 
-// Garante usuário padrão inicial (admin / admin123 ou malves / M@ychel123)
+// Garante usuário padrão inicial se tabela estiver vazia
 const userCount = db.prepare('SELECT count(*) as count FROM users').get().count;
 if (userCount === 0) {
-  const hash = bcrypt.hashSync('M@ychel123', 10);
+  const hash = bcrypt.hashSync(process.env.INITIAL_ADMIN_PASSWORD || 'admin_smm_123', 10);
   db.prepare(`
     INSERT INTO users (id, name, username, password_hash, role)
     VALUES (?, ?, ?, ?, ?)
-  `).run('user_admin', 'Maychel Alves', 'malves', hash, 'admin');
+  `).run('user_admin', 'Administrador SMM', 'admin', hash, 'admin');
   console.log('[DB] Usuário admin padrão criado: malves');
 }
 
@@ -137,7 +137,8 @@ function loadData() {
     serviceId: a.service_id,
     autoRefillEnabled: Boolean(a.auto_refill_enabled),
     notes: a.notes,
-    lastChecked: a.last_checked
+    lastChecked: a.last_checked,
+    createdAt: a.created_at
   }));
 
   const ordersRaw = db.prepare('SELECT * FROM orders ORDER BY order_id DESC').all();
@@ -184,8 +185,10 @@ function saveData(data) {
       VALUES (@id, @name, @platform, @link, @targetFollowers, @currentFollowers, @serviceId, @autoRefillEnabled, @notes, @lastChecked)
       ON CONFLICT(id) DO UPDATE SET
         name=excluded.name,
+        link=excluded.link,
         target_followers=excluded.target_followers,
         current_followers=excluded.current_followers,
+        service_id=excluded.service_id,
         auto_refill_enabled=excluded.auto_refill_enabled,
         notes=excluded.notes,
         last_checked=excluded.last_checked
@@ -214,6 +217,7 @@ function saveData(data) {
       INSERT INTO orders (order_id, service_id, service_name, link, account_id, quantity, runs, interval, status, charge, start_count, remains, target_amount, created_at)
       VALUES (@orderId, @serviceId, @serviceName, @link, @accountId, @quantity, @runs, @interval, @status, @charge, @start_count, @remains, @targetAmount, @createdAt)
       ON CONFLICT(order_id) DO UPDATE SET
+        service_name=COALESCE(NULLIF(excluded.service_name, ''), orders.service_name),
         status=excluded.status,
         charge=excluded.charge,
         start_count=excluded.start_count,
@@ -277,8 +281,14 @@ function saveData(data) {
   }
 }
 
+function deleteAccount(id) {
+  const stmt = db.prepare('DELETE FROM accounts WHERE id = ?');
+  return stmt.run(id);
+}
+
 module.exports = {
   db,
   loadData,
-  saveData
+  saveData,
+  deleteAccount
 };

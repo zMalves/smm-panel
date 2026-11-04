@@ -86,6 +86,16 @@ async function executeSyncStatusTask() {
   if (ids.length > 0) {
     try {
       const statusMap = await smm.getOrderStatus(ids.slice(0, 100));
+      
+      // Carrega catálogo para preencher nomes de serviços pendentes
+      let servicesList = [];
+      try {
+        const rawServices = await smm.getServices();
+        if (Array.isArray(rawServices)) servicesList = rawServices;
+      } catch (e) {
+        // Ignora falha de busca de serviços
+      }
+
       (db.orders || []).forEach(o => {
         const live = statusMap[String(o.orderId)];
         if (live && !live.error) {
@@ -94,6 +104,12 @@ async function executeSyncStatusTask() {
           o.start_count = live.start_count;
           o.remains = live.remains;
           o.targetAmount = Number(live.start_count || 0) + Number(o.quantity || 0);
+        }
+        if ((!o.serviceName || o.serviceName.startsWith('Serviço #')) && servicesList.length > 0) {
+          const found = servicesList.find(s => Number(s.service) === Number(o.serviceId));
+          if (found && found.name) {
+            o.serviceName = found.name;
+          }
         }
       });
       storage.saveData(db);
