@@ -1,0 +1,5222 @@
+{
+  "total_services": 490,
+  "total_categories": 51,
+  "types": [
+    "Default",
+    "Subscriptions",
+    "Custom Comments",
+    "Poll",
+    "Comment Likes",
+    "Package"
+  ],
+  "categories_summary": [
+    {
+      "category": "Instagram - Seguidores Queda Reduzida",
+      "total_services": 1
+    },
+    {
+      "category": "Instagram - Seguidores Brasileiros Emergenciais 🚨",
+      "total_services": 4
+    },
+    {
+      "category": "Instagram - Seguidores Mundiais Emergenciais 🚨",
+      "total_services": 8
+    },
+    {
+      "category": "Instagram - Mais Vendidos 🌟",
+      "total_services": 3
+    },
+    {
+      "category": "Instagram - Promoção Especial🎁",
+      "total_services": 24
+    },
+    {
+      "category": "Instagram - Serviços Brasileiros🔰",
+      "total_services": 15
+    },
+    {
+      "category": "Instagram - Serviços Mistos 🔰/🌍",
+      "total_services": 4
+    },
+    {
+      "category": "Instagram - Seguidores Mundiais🌎",
+      "total_services": 11
+    },
+    {
+      "category": "Instagram - Curtidas Mundiais🌎",
+      "total_services": 11
+    },
+    {
+      "category": "Instagram - Visualizações♾️",
+      "total_services": 16
+    },
+    {
+      "category": "Instagram - Comentários 💭",
+      "total_services": 8
+    },
+    {
+      "category": "Instagram - Serviços por País🏳️",
+      "total_services": 6
+    },
+    {
+      "category": "Instagram - Entrega Automática🔁",
+      "total_services": 7
+    },
+    {
+      "category": "Instagram - Métricas📊",
+      "total_services": 10
+    },
+    {
+      "category": "Instagram - Membros em Canal 🎯​",
+      "total_services": 1
+    },
+    {
+      "category": "Instagram - Serviços por Gênero👫",
+      "total_services": 4
+    },
+    {
+      "category": "Tiktok - Seguidores",
+      "total_services": 9
+    },
+    {
+      "category": "Tiktok - Curtidas",
+      "total_services": 17
+    },
+    {
+      "category": "Tiktok - Visualizações",
+      "total_services": 9
+    },
+    {
+      "category": "Tiktok - Métricas e Outros",
+      "total_services": 13
+    },
+    {
+      "category": "Youtube - Inscritos",
+      "total_services": 5
+    },
+    {
+      "category": "Youtube - Curtidas",
+      "total_services": 11
+    },
+    {
+      "category": "Youtube - Visualizações",
+      "total_services": 32
+    },
+    {
+      "category": "Youtube - Métricas e Outros",
+      "total_services": 6
+    },
+    {
+      "category": "Kwai - Seguidores",
+      "total_services": 10
+    },
+    {
+      "category": "Kwai - Curtidas",
+      "total_services": 8
+    },
+    {
+      "category": "Kwai - Visualizações",
+      "total_services": 12
+    },
+    {
+      "category": "Kwai - Métricas e Outros",
+      "total_services": 9
+    },
+    {
+      "category": "Serviços para Facebook",
+      "total_services": 32
+    },
+    {
+      "category": "Serviços para Telegram",
+      "total_services": 40
+    },
+    {
+      "category": "Serviços para X/Twitter",
+      "total_services": 4
+    },
+    {
+      "category": "Serviços para Bluesky",
+      "total_services": 5
+    },
+    {
+      "category": "Serviços para Pinterest",
+      "total_services": 6
+    },
+    {
+      "category": "Serviços para Google",
+      "total_services": 1
+    },
+    {
+      "category": "Serviços para Trustpilot",
+      "total_services": 1
+    },
+    {
+      "category": "Serviços para Threads",
+      "total_services": 3
+    },
+    {
+      "category": "Serviços para Whatsapp",
+      "total_services": 9
+    },
+    {
+      "category": "Serviços para Roblox",
+      "total_services": 15
+    },
+    {
+      "category": "Serviços para Topick",
+      "total_services": 14
+    },
+    {
+      "category": "Serviços para Twitch",
+      "total_services": 12
+    },
+    {
+      "category": "Serviços para Kick",
+      "total_services": 11
+    },
+    {
+      "category": "Serviços para Trovo",
+      "total_services": 8
+    },
+    {
+      "category": "Serviços para SnackVideo",
+      "total_services": 20
+    },
+    {
+      "category": "Serviços para Linkedin",
+      "total_services": 4
+    },
+    {
+      "category": "Serviços para Reddit",
+      "total_services": 3
+    },
+    {
+      "category": "Serviços para Dribble",
+      "total_services": 2
+    },
+    {
+      "category": "Serviços para Rumble",
+      "total_services": 5
+    },
+    {
+      "category": "Serviços para Coinmarketcap",
+      "total_services": 9
+    },
+    {
+      "category": "Denuncias",
+      "total_services": 10
+    },
+    {
+      "category": "Tráfego para Site",
+      "total_services": 1
+    },
+    {
+      "category": "Privado",
+      "total_services": 1
+    }
+  ],
+  "services_by_category": {
+    "Instagram - Seguidores Queda Reduzida": [
+      {
+        "id": 569,
+        "name": "Seguidores Mundiais | 🥇 | ⏳5-10K | ⚡️",
+        "type": "Default",
+        "rate": 15.92,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Seguidores Brasileiros Emergenciais 🚨": [
+      {
+        "id": 518,
+        "name": "1️⃣ Seguidores Brasileiros| 🥇 | ⏳10-20K | ⚡️",
+        "type": "Default",
+        "rate": 40.25,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 567,
+        "name": "2️⃣ Seguidores Brasileiros| 🥇 | ⏳5-10K | ⚡️",
+        "type": "Default",
+        "rate": 14.9,
+        "min": 100,
+        "max": 10000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 573,
+        "name": "3️⃣ Seguidores Brasileiros| 🥇 | ⏳5-10K | ⚡️",
+        "type": "Default",
+        "rate": 23.62,
+        "min": 10,
+        "max": 5500,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 574,
+        "name": "4️⃣ Seguidores Brasileiros| 🥇 | ⏳5-10K | ⚡️",
+        "type": "Default",
+        "rate": 16.98,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Seguidores Mundiais Emergenciais 🚨": [
+      {
+        "id": 521,
+        "name": "6️⃣ Seguidores Mundiais | 🥇 | ⏳5-10K  | ⚡️",
+        "type": "Default",
+        "rate": 3.101,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 512,
+        "name": "7️⃣ Seguidores Mundiais | 🥇 | ⏳1-5K | ⚡️",
+        "type": "Default",
+        "rate": 6.858,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 555,
+        "name": "8️⃣ Seguidores Mundiais | 🥇 | ⏳1-5K | ⚡️",
+        "type": "Default",
+        "rate": 5.586,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 554,
+        "name": "5️⃣Seguidores Mundiais | 🥇 | ⏳50-100K  | ⚡️",
+        "type": "Default",
+        "rate": 6.101,
+        "min": 50,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 517,
+        "name": "4️⃣ Seguidores Mundiais | 🥇 | ⏳10K |⚡️",
+        "type": "Default",
+        "rate": 4.586,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 570,
+        "name": "2️⃣ Seguidores Mundiais | 🥇 | ⏳50K |⚡️",
+        "type": "Default",
+        "rate": 23.634,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 571,
+        "name": "1️⃣ Seguidores Mundiais | 🥇 | ⏳10K |⚡️",
+        "type": "Default",
+        "rate": 4.717,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 572,
+        "name": "4️⃣ Seguidores Mundiais | 🥇 | ⏳500K |⚡️",
+        "type": "Default",
+        "rate": 7.591,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Mais Vendidos 🌟": [
+      {
+        "id": 528,
+        "name": "Seguidores Brasileiros | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 5.496,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 531,
+        "name": "Seguidores Brasileiros | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 5.267,
+        "min": 50,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 527,
+        "name": "Visualizações em Vídeo | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.012,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Promoção Especial🎁": [
+      {
+        "id": 3,
+        "name": "Seguidores Mundiais | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 8.644,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 5,
+        "name": "Seguidores Mundiais | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 9.395,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 7,
+        "name": "Seguidores Mundiais | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 10.147,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 11,
+        "name": "Visualizações em Vídeo | ⚡️ | 💎",
+        "type": "Default",
+        "rate": 0.017,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 12,
+        "name": "Visualizações em Vídeo | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 0.014,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 13,
+        "name": "Visualizações em Vídeo | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.012,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 14,
+        "name": "Visualizações em Vídeo | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 0.009,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 15,
+        "name": "Seguidores Brasileiros | ❄️ | ⭐",
+        "type": "Default",
+        "rate": 5.267,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 16,
+        "name": "Seguidores Brasileiros | ❄️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 29.784,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 17,
+        "name": "Seguidores Brasileiros | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 6.183,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 18,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 7.448,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 19,
+        "name": "Seguidores Brasileiros | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 5.725,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 20,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 6.916,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 23,
+        "name": "Curtidas | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 0.688,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 24,
+        "name": "Curtidas | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.931,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 25,
+        "name": "Curtidas | ❄️ | 🥈",
+        "type": "Default",
+        "rate": 0.892,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 26,
+        "name": "Curtidas Brasileiras (Orgânico) | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 6,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 27,
+        "name": "Curtidas Brasileiras (Orgânico) | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 7.5,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 28,
+        "name": "Curtidas Brasileiras | ❄️ | 🥇",
+        "type": "Default",
+        "rate": 5.656,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 29,
+        "name": "Curtidas Brasileiras | ❄️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 5.883,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 532,
+        "name": "Seguidores Mundiais | 🥈 | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 9.395,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 533,
+        "name": "Seguidores Mundiais | ⭐ | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 9.771,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 534,
+        "name": "Seguidores Mundiais | 💎 | ⚡️",
+        "type": "Default",
+        "rate": 8.644,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 535,
+        "name": "Seguidores Mundiais | 💎 | ♻️R30  | ⚡️",
+        "type": "Default",
+        "rate": 10.147,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Serviços Brasileiros🔰": [
+      {
+        "id": 530,
+        "name": "Seguidores Brasileiros | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 5.725,
+        "min": 50,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 529,
+        "name": "Seguidores Brasileiros | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 5.725,
+        "min": 50,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 36,
+        "name": "Seguidores Brasileiros | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 5.267,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 37,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 6.384,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 33,
+        "name": "Seguidores Brasileiros | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 5.725,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 34,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 6.916,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 35,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️AR30 | ⭐",
+        "type": "Default",
+        "rate": 9.31,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 32,
+        "name": "Seguidores Brasileiros (Orgânico) | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 35,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 466,
+        "name": "Seguidores Brasileiros (Orgânico) | ⭐ |  ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 40,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 38,
+        "name": "Seguidores Brasileiros | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 4.34,
+        "min": 100,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 42,
+        "name": "Curtidas Brasileiras | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1.838,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 43,
+        "name": "Curtidas Brasileiras | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 5.886,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 40,
+        "name": "Curtidas Brasileiras (Orgânico) | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 6,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 41,
+        "name": "Curtidas Brasileiras (Orgânico) | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 7.5,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 575,
+        "name": "Curtidas Brasileiras | ⭐ | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 7.17,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Instagram - Serviços Mistos 🔰/🌍": [
+      {
+        "id": 21,
+        "name": "Seguidores Brasileiros | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 4.34,
+        "min": 100,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 22,
+        "name": "Seguidores Brasileiros | ⚡️ | 🥉",
+        "type": "Default",
+        "rate": 3.807,
+        "min": 100,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 30,
+        "name": "Curtidas Brasileiras | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 0.84,
+        "min": 100,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 31,
+        "name": "Curtidas Brasileiras | ⚡️ | ♻️R30 | 🥈",
+        "type": "Default",
+        "rate": 0.875,
+        "min": 100,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Instagram - Seguidores Mundiais🌎": [
+      {
+        "id": 46,
+        "name": "Seguidores Mundiais |⚡️| 🆕",
+        "type": "Default",
+        "rate": 3.399,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 52,
+        "name": "Seguidores Mundiais | ⚡️ | 🥉",
+        "type": "Default",
+        "rate": 8.268,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 51,
+        "name": "Seguidores Mundiais | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 8.644,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 47,
+        "name": "Seguidores Mundiais | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 9.019,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 48,
+        "name": "Seguidores Mundiais | ⚡️ | ♻️ R30 | 🥇",
+        "type": "Default",
+        "rate": 10.147,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 49,
+        "name": "Seguidores Mundiais | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 10.147,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 50,
+        "name": "Seguidores Mundiais | ⚡️ | 💎",
+        "type": "Default",
+        "rate": 10.898,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 54,
+        "name": "Seguidores Mundiais | ⚡️ | ♻️ AR120 | 🥇",
+        "type": "Default",
+        "rate": 14.656,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 55,
+        "name": "Seguidores Mundiais | ⚡️ | ♻️ AR60 | 🥇",
+        "type": "Default",
+        "rate": 13.529,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 56,
+        "name": "Seguidores Mundiais | ⚡️ | ♻️ R30 | 🥇",
+        "type": "Default",
+        "rate": 10.147,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 53,
+        "name": "Seguidores Mundiais | ⚡️ | ♻️ R365 | ⭐",
+        "type": "Default",
+        "rate": 5.93,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Curtidas Mundiais🌎": [
+      {
+        "id": 67,
+        "name": "Curtidas | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.644,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 65,
+        "name": "Curtidas | ⚡️ | ♻️ R30 | 🥇",
+        "type": "Default",
+        "rate": 0.931,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 64,
+        "name": "Curtidas | ⚡️ | ♻️ R60 | 🥇",
+        "type": "Default",
+        "rate": 0.97,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 62,
+        "name": "Curtidas | ⚡️ | ♻️ R90 | 🥇",
+        "type": "Default",
+        "rate": 1.009,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 63,
+        "name": "Curtidas | ⚡️ | ♻️ R120 | 🥇",
+        "type": "Default",
+        "rate": 1.047,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 66,
+        "name": "Curtidas | ⚡️ | ♻️ AR30 | 🥇",
+        "type": "Default",
+        "rate": 1.086,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 57,
+        "name": "Curtidas | ⚡️ | ♻️ R30 | ⭐",
+        "type": "Default",
+        "rate": 1.125,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 58,
+        "name": "Curtidas | ⚡️ | ♻️ R60 | ⭐",
+        "type": "Default",
+        "rate": 1.164,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 59,
+        "name": "Curtidas | ⚡️ | ♻️ R365 | ⭐",
+        "type": "Default",
+        "rate": 1.358,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 61,
+        "name": "Curtidas no Story | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1.239,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 60,
+        "name": "Curtidas automáticas | ⚡️ | ➖ | ⭐",
+        "type": "Subscriptions",
+        "rate": 2.356,
+        "min": 10,
+        "max": 80000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Visualizações♾️": [
+      {
+        "id": 68,
+        "name": "Visualizações em Vídeo | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 0.017,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 69,
+        "name": "Visualizações em Vídeo | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.015,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 70,
+        "name": "Visualizações em Vídeo | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 0.012,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 71,
+        "name": "Visualizações em Reels (Ajuda na recomendação) | ⚡️ | 💧 | ⭐",
+        "type": "Default",
+        "rate": 0.276,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 72,
+        "name": "Visualizações em Reels (Aparece no explorar) | ⚡️ | 💧 | ⭐",
+        "type": "Default",
+        "rate": 0.454,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 73,
+        "name": "Visualizações no Reels Brasileiras + 10% de Curtidas | ⭐ |",
+        "type": "Default",
+        "rate": 0.637,
+        "min": 200,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 74,
+        "name": "Visualizações no Reels Brasileiras + 20% de Curtidas | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 1.274,
+        "min": 100,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 75,
+        "name": "Visualizações no Reels Brasileiras + 30% de Curtidas | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 1.911,
+        "min": 100,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 76,
+        "name": "Visualizações no Reels Brasileiras + 40% de Curtidas | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 2.613,
+        "min": 100,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 77,
+        "name": "Visualizações no Reels Brasileiras + 50% de Curtidas | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 3.25,
+        "min": 100,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 79,
+        "name": "Visualizações nos Storys | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 0.938,
+        "min": 100,
+        "max": 12000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 80,
+        "name": "Visualizações nos Storys | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.882,
+        "min": 100,
+        "max": 12000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 81,
+        "name": "Visualizações nos Storys | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 1.369,
+        "min": 100,
+        "max": 12000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 440,
+        "name": "Votos em Enquete | Opção 1 | 💧 | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 5.439,
+        "min": 100,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 441,
+        "name": "Votos em Enquete | Opção 2 | 💧 | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 5.439,
+        "min": 100,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 442,
+        "name": "Votos em Enquete | Opção 3 | 💧 | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 5.439,
+        "min": 100,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Comentários 💭": [
+      {
+        "id": 82,
+        "name": "Curtidas em Comentários | ⚡️⚡️ | ➖ | ⭐",
+        "type": "Default",
+        "rate": 20.394,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 83,
+        "name": "Curtidas em Comentários | ❄️ | ➖ | ⭐",
+        "type": "Default",
+        "rate": 20.394,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 84,
+        "name": "Comentários Aleatórios | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 16.313,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 87,
+        "name": "Comentários de Emojis Negativos | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 18.355,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 88,
+        "name": "Comentários Brasileiros | Aleatórios | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 60,
+        "min": 1,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 89,
+        "name": "Comentários Brasileiros | Personalizados | 🥇 | ⚡️",
+        "type": "Custom Comments",
+        "rate": 75,
+        "min": 1,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 90,
+        "name": "Comentários Brasileiros Personalizados | 🚹Masculino | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 95,
+        "min": 1,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 91,
+        "name": "Comentários Brasileiros Personalizados | 🚺Feminino | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 95,
+        "min": 1,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Instagram - Serviços por País🏳️": [
+      {
+        "id": 93,
+        "name": "Visualizações Americanas | ⚡️ | 💧 | ♻️R07 | ⭐",
+        "type": "Default",
+        "rate": 2.55,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 94,
+        "name": "Visualizações Brasileiras | ⚡️ | 💧 | ⭐",
+        "type": "Default",
+        "rate": 4.459,
+        "min": 100,
+        "max": 1000000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 95,
+        "name": "Visualizações Turcas | ⚡️ | 💧 | ⭐",
+        "type": "Default",
+        "rate": 3.293,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 96,
+        "name": "Visualizações Indonesia | ⚡️ | 💧 | ⭐",
+        "type": "Default",
+        "rate": 3.293,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 97,
+        "name": "Visualizações Russas | ⚡️ | 💧 | ⭐",
+        "type": "Default",
+        "rate": 3.293,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 98,
+        "name": "Visualizações Portuguesas | ⚡️ | 💧 | ⭐",
+        "type": "Default",
+        "rate": 3.293,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Entrega Automática🔁": [
+      {
+        "id": 99,
+        "name": "Curtidas | 🚺Feminino | ⚡️ | 💧 | ♻️R30 | 🥇",
+        "type": "Subscriptions",
+        "rate": 3.659,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 100,
+        "name": "Curtidas | ⚡️ | 💧 | 🥇",
+        "type": "Subscriptions",
+        "rate": 2.189,
+        "min": 10,
+        "max": 300000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 101,
+        "name": "Curtidas | ⚡️ | 💧 | ♻️R30 | 🥇",
+        "type": "Subscriptions",
+        "rate": 2.62,
+        "min": 10,
+        "max": 300000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 102,
+        "name": "Curtidas | ⚡️ | 💧 | ♻️R60 | 🥇",
+        "type": "Subscriptions",
+        "rate": 2.62,
+        "min": 10,
+        "max": 300000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 103,
+        "name": "Curtidas | ⚡️ | 💧 | ♻️R120 | 🥇",
+        "type": "Subscriptions",
+        "rate": 2.62,
+        "min": 10,
+        "max": 300000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 104,
+        "name": "Visualizações em Vídeo | ⚡️ | 💧 | 🥇",
+        "type": "Subscriptions",
+        "rate": 0.011,
+        "min": 100,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 468,
+        "name": "Curtidas Brasileiras│⭐Premium│⚡️│♻️R30│",
+        "type": "Subscriptions",
+        "rate": 2.76,
+        "min": 10,
+        "max": 250000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Instagram - Métricas📊": [
+      {
+        "id": 556,
+        "name": "Votos Brasileiros em Enquete de Post | 1️⃣, 2️⃣, 3️⃣, 4️⃣ | 🥇 | ⚡️",
+        "type": "Poll",
+        "rate": 9.43,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 105,
+        "name": "Impressões + Alcance + Visitas ao perfil  | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.157,
+        "min": 100,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 106,
+        "name": "Visitas ao perfil (Link de Post) | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.144,
+        "min": 100,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 107,
+        "name": "Impressões | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.157,
+        "min": 100,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 108,
+        "name": "Compartilhamento | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.051,
+        "min": 100,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 109,
+        "name": "Compartilhamento | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.051,
+        "min": 100,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 110,
+        "name": "Salvo | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 0.518,
+        "min": 1,
+        "max": 100000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 111,
+        "name": "Impressões + Alcance | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.157,
+        "min": 100,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 112,
+        "name": "Compartilhamento | ⚡️ | ♻️R90 | 🥇",
+        "type": "Default",
+        "rate": 0.051,
+        "min": 100,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 510,
+        "name": "Repost | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 4.84,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Membros em Canal 🎯​": [
+      {
+        "id": 444,
+        "name": "Membros Brasileiros em Canal | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 3.503,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Instagram - Serviços por Gênero👫": [
+      {
+        "id": 469,
+        "name": "Seguidores Brasileiros | 🚺 Feminino | ⭐ | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 15.295,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 470,
+        "name": "Seguidores Brasileiros | 🚹 Masculino | ⭐ | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 15.295,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 471,
+        "name": "Curtidas Brasileiras | 🚹 Masculino | ⭐ | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 8.05,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 472,
+        "name": "Curtidas Brasileiras | 🚺 Feminino | ⭐ | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 8.05,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Tiktok - Seguidores": [
+      {
+        "id": 123,
+        "name": "Seguidores | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 15.813,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 124,
+        "name": "Seguidores | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 9.317,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 125,
+        "name": "Seguidores | ⚡️ | ♻️R07 | 🥇",
+        "type": "Default",
+        "rate": 12.386,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 126,
+        "name": "Seguidores | ⚡️ | ♻️R15 | 🥇",
+        "type": "Default",
+        "rate": 10.801,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 127,
+        "name": "Seguidores | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 11.401,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 130,
+        "name": "Seguidores Brasileiros (Orgânico) | ⭐ | ⚡️",
+        "type": "Default",
+        "rate": 20,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 489,
+        "name": "Seguidores Brasileiros (Orgânico) | ⭐ | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 30,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 490,
+        "name": "Seguidores Brasileiros | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 12.25,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 131,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 11.5,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Tiktok - Curtidas": [
+      {
+        "id": 134,
+        "name": "Curtidas | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 3.642,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 135,
+        "name": "Curtidas | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 3.794,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 136,
+        "name": "Curtidas | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 3.642,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 137,
+        "name": "Curtidas | ⚡️ | ♻️R30 | 🥈",
+        "type": "Default",
+        "rate": 3.49,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 133,
+        "name": "Curtidas | ⚡️ | ♻️R365 | ⭐",
+        "type": "Default",
+        "rate": 3.945,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 138,
+        "name": "Curtidas | ⚡️ | 🥉",
+        "type": "Default",
+        "rate": 3.49,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 456,
+        "name": "Curtidas Brasileiras (Orgânico) | ⭐ | ⚡️",
+        "type": "Default",
+        "rate": 6,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 139,
+        "name": "Curtidas brasileiras | ⚡️ | ➖ | 🥇",
+        "type": "Default",
+        "rate": 4.232,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 140,
+        "name": "Curtidas brasileiras | ⚡️ | ➖ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 6.21,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 141,
+        "name": "Curtidas brasileiras | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 3.49,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 142,
+        "name": "Curtidas brasileiras | ⚡️ | ♻️R30 | 🥈",
+        "type": "Default",
+        "rate": 4.552,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 143,
+        "name": "Curtidas na Live | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.094,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 144,
+        "name": "Curtidas + Visualizações | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 3.44,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 145,
+        "name": "Curtidas Brasileiras no Story | ⚡️ | 💧 | ⭐",
+        "type": "Default",
+        "rate": 4.472,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 146,
+        "name": "Curtidas nos Stories | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 1.564,
+        "min": 50,
+        "max": 30000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 147,
+        "name": "Curtidas em Comentários | ⚡️ | 💧 | ♻️R30 | ⭐",
+        "type": "Comment Likes",
+        "rate": 1.001,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 537,
+        "name": "Curtidas Brasileiras (Orgânico) | ⭐ | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 7.98,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Tiktok - Visualizações": [
+      {
+        "id": 148,
+        "name": "Visualizações | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 0.163,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 149,
+        "name": "Visualizações | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.715,
+        "min": 100,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 150,
+        "name": "Visualizações nos Stories | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1.251,
+        "min": 100,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 151,
+        "name": "Visualizações Brasileiras | ⚡️ | 💧 | ➖ | ⭐",
+        "type": "Default",
+        "rate": 1.55,
+        "min": 100,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 152,
+        "name": "Espectadores ao vivo | 15M | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 8.756,
+        "min": 50,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 153,
+        "name": "Espectadores ao vivo | 30M | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 17.512,
+        "min": 50,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 154,
+        "name": "Espectadores ao vivo | 1H | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 35.024,
+        "min": 50,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 156,
+        "name": "Espectadores ao vivo | 2H | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 70.047,
+        "min": 50,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 158,
+        "name": "Espectadores ao vivo | 4H | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 156.354,
+        "min": 20,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Tiktok - Métricas e Outros": [
+      {
+        "id": 159,
+        "name": "Comentários Aleatórios | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 5.942,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 160,
+        "name": "Comentários Personalizado | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 8.131,
+        "min": 1,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 161,
+        "name": "Comentários de Emoji | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 8.131,
+        "min": 1,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 162,
+        "name": "Comentários de Emoji em Live | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.879,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 163,
+        "name": "Comentários Aleatorios em Live | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.879,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 164,
+        "name": "Comentários Personalizados em Live | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 4.879,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 445,
+        "name": "Comentários Brasileiros Reais de Elogios  | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 14.95,
+        "min": 1,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 446,
+        "name": "Comentários Brasileiros Personalizados  | 🥇 | ⚡️",
+        "type": "Custom Comments",
+        "rate": 14.95,
+        "min": 1,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 165,
+        "name": "Compartilhamento | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.376,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 166,
+        "name": "Compartilhamento | ⚡️ | 🥈",
+        "type": "Default",
+        "rate": 0.376,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 167,
+        "name": "Não tenho interesse | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.251,
+        "min": 50,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 168,
+        "name": "Salvos | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.376,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 169,
+        "name": "Pontos de Batalha | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.97,
+        "min": 100,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Youtube - Inscritos": [
+      {
+        "id": 170,
+        "name": "Inscritos Brasileiros | ⚡️ | ♻️R30 | ➖ | ⭐",
+        "type": "Default",
+        "rate": 285.516,
+        "min": 500,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 171,
+        "name": "Inscritos | ⚡️ | ♻️R07 | ❄️ | 🥇",
+        "type": "Default",
+        "rate": 228.413,
+        "min": 500,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 172,
+        "name": "Inscritos | ⚡️ | ♻️R60 | ❄️ | 🥇",
+        "type": "Default",
+        "rate": 237.93,
+        "min": 500,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 173,
+        "name": "Inscritos | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 218.896,
+        "min": 500,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 174,
+        "name": "Inscritos | ⚡️ | 🥉",
+        "type": "Default",
+        "rate": 3.543,
+        "min": 100,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Youtube - Curtidas": [
+      {
+        "id": 175,
+        "name": "Curtidas | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 4.08,
+        "min": 10,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 176,
+        "name": "Curtidas | ⚡️ | ♻️R30 | 🥈",
+        "type": "Default",
+        "rate": 4.08,
+        "min": 10,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 177,
+        "name": "Curtidas | ⚡️ | ♻️R30 | ➖ | ⭐",
+        "type": "Default",
+        "rate": 4.08,
+        "min": 10,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 179,
+        "name": "Curtidas Brasileiras | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 13.398,
+        "min": 10,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 180,
+        "name": "Curtidas Brasileiras | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 16.744,
+        "min": 10,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 181,
+        "name": "Curtidas para Shorts | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 22.328,
+        "min": 100,
+        "max": 300000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 182,
+        "name": "Curtidas nos Comentários | ⚡️ | ♻️R30 | ❄️ | 🥇",
+        "type": "Default",
+        "rate": 1.314,
+        "min": 10,
+        "max": 7000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 183,
+        "name": "Curtidas nos Comentários | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1.314,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 184,
+        "name": "Curtidas nos Comentários | ⚡️ | 💧Drip-Feed | 🥇",
+        "type": "Default",
+        "rate": 1.314,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 186,
+        "name": "Curtidas na Comunidade | ⚡️ | 💧 | 🥇",
+        "type": "Default",
+        "rate": 53.868,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 187,
+        "name": "Curtidas em Lives | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 26.605,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Youtube - Visualizações": [
+      {
+        "id": 188,
+        "name": "Visualizações | ❄️ | ⭐",
+        "type": "Default",
+        "rate": 13.675,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 189,
+        "name": "Visualizações | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 6.361,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 190,
+        "name": "Visualizações | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 6.361,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 191,
+        "name": "Visualizações | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 6.361,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 192,
+        "name": "Visualizações em Shorts | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.679,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 193,
+        "name": "Visualizações em Shorts | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 4.679,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 194,
+        "name": "Visualizações via ADS | ⚡️ | ➖ | 🥇",
+        "type": "Default",
+        "rate": 8.756,
+        "min": 100,
+        "max": 10000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 195,
+        "name": "Espectadores ao vivo | 15M | ⚡️| 🥇",
+        "type": "Default",
+        "rate": 1.082,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 196,
+        "name": "Espectadores ao vivo | 30M | ⚡️| 🥇",
+        "type": "Default",
+        "rate": 2.164,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 197,
+        "name": "Espectadores ao vivo | 1H | ⚡️| 🥇",
+        "type": "Default",
+        "rate": 4.408,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 198,
+        "name": "Espectadores ao vivo | 1:30H | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 6.616,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 199,
+        "name": "Espectadores ao vivo | 2H | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 8.815,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 200,
+        "name": "Espectadores ao vivo | 4H | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 26.444,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 201,
+        "name": "Espectadores ao vivo | 6H | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 19.412,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 202,
+        "name": "Espectadores ao vivo | 12H | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 52.887,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 203,
+        "name": "Espectadores ao vivo | 24H | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 105.773,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 204,
+        "name": "Espectadores ao vivo | 7D | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 283.885,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 205,
+        "name": "Espectadores ao vivo | 30D | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 787.78,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 538,
+        "name": "Visualizações | ⭐ | ❄️",
+        "type": "Default",
+        "rate": 9.104,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 539,
+        "name": "Visualizações | ⭐ | ♻️R30 | ❄️",
+        "type": "Default",
+        "rate": 10.469,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 540,
+        "name": "Espectadores ao vivo 2️⃣ | 15M | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 3.799,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 541,
+        "name": "Espectadores ao vivo 2️⃣ | 30M | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 7.598,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 542,
+        "name": "Espectadores ao vivo 2️⃣ | 1H | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 15.167,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 543,
+        "name": "Espectadores ao vivo 2️⃣ | 1:30H | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 22.751,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 544,
+        "name": "Espectadores ao vivo 2️⃣ | 2H | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 30.334,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 545,
+        "name": "Espectadores ao vivo  | 3H | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 46.748,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 546,
+        "name": "Espectadores ao vivo 2️⃣ | 3H | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 60.103,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 547,
+        "name": "Espectadores ao vivo 2️⃣ | 6H | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 102.443,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 548,
+        "name": "Espectadores ao vivo 2️⃣ | 12H | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 182.004,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 549,
+        "name": "Espectadores ao vivo 2️⃣ | 24H | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 364.008,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 550,
+        "name": "Espectadores ao vivo 2️⃣ | 7D | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 4416.628,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 551,
+        "name": "Espectadores ao vivo 2️⃣ | 30D | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 18928.373,
+        "min": 50,
+        "max": 5000000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Youtube - Métricas e Outros": [
+      {
+        "id": 207,
+        "name": "Horas em Exibição | ⭐ | +60 Min de Vídeo | ♻️R30 | LEIA A DESCRIÇÃO |",
+        "type": "Default",
+        "rate": 156.762,
+        "min": 100,
+        "max": 4000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 208,
+        "name": "Comentários personalizados | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 12.726,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 209,
+        "name": "Comentários personalizados | ⚡️ | ⭐",
+        "type": "Custom Comments",
+        "rate": 12.509,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 210,
+        "name": "Comentários Brasileiros | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 240.786,
+        "min": 10,
+        "max": 250,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 211,
+        "name": "Comentários Personalizados Brasileiros | ⚡️ | 💧 | ⭐",
+        "type": "Custom Comments",
+        "rate": 273.62,
+        "min": 10,
+        "max": 250,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 212,
+        "name": "Comentários Personalizados Brasileiros em Lives | ⚡️ | ⭐",
+        "type": "Custom Comments",
+        "rate": 12.196,
+        "min": 5,
+        "max": 7500,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Kwai - Seguidores": [
+      {
+        "id": 213,
+        "name": "Seguidores Brasileiros | ⚡ | ⏳100K/D | ♻️R365 | ⭐",
+        "type": "Default",
+        "rate": 3.89,
+        "min": 1,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 214,
+        "name": "Seguidores | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 3.77,
+        "min": 1,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 215,
+        "name": "Seguidores Brasileiros | ⚡ | ⏳100K/D | ♻️R30 | 🥈",
+        "type": "Default",
+        "rate": 3.68,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 216,
+        "name": "Seguidores | ⚡️ | ♻️R30 | 🥈",
+        "type": "Default",
+        "rate": 3.77,
+        "min": 1,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 217,
+        "name": "Seguidores Brasileiros | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 3.55,
+        "min": 1,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 218,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 3.87,
+        "min": 1,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 491,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 5,
+        "min": 1,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 219,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️R30 | 🚹Masculino | 🥇",
+        "type": "Default",
+        "rate": 6.89,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 220,
+        "name": "Seguidores Brasileiros | ⚡️ | ♻️R30 | 🚺Feminino | 🥇",
+        "type": "Default",
+        "rate": 6.89,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 221,
+        "name": "Seguidores para Lojas | ⚡ | ♻️R365 | ⭐",
+        "type": "Default",
+        "rate": 5.55,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Kwai - Curtidas": [
+      {
+        "id": 222,
+        "name": "Curtidas Brasileiras | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 2.11,
+        "min": 10,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 223,
+        "name": "Curtidas Brasileiras | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 2.44,
+        "min": 10,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 224,
+        "name": "Curtidas Brasileiras | ⚡️ | ♻️R30 | 🚹Masculino | 🥇",
+        "type": "Default",
+        "rate": 4.25,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 225,
+        "name": "Curtidas Brasileiras | ⚡️ | ♻️R30 | 🚺Feminino | 🥇",
+        "type": "Default",
+        "rate": 4.25,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 226,
+        "name": "Curtidas em Comentários | ⚡️ | 💧 | ♻️R30 | ➖ | ⭐",
+        "type": "Comment Likes",
+        "rate": 9.77,
+        "min": 100,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 227,
+        "name": "Curtidas em Live | ⚡️ | ➖ | ⭐",
+        "type": "Default",
+        "rate": 7.25,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 228,
+        "name": "Curtidas + Visualizações Brasileiras | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 3.75,
+        "min": 10,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 229,
+        "name": "Dislike | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 1.63,
+        "min": 100,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Kwai - Visualizações": [
+      {
+        "id": 230,
+        "name": "Visualização Brasileiras + Bônus | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 2.19,
+        "min": 10,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 568,
+        "name": "Bastões em Transmissão | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 19.75,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 231,
+        "name": "Espectadores ao vivo | 15M | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 6.34,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 232,
+        "name": "Espectadores ao vivo | 30M | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 12.03,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 233,
+        "name": "Espectadores ao vivo | 1H | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 24.36,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 234,
+        "name": "Espectadores ao vivo | 1:30H | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 37.84,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 235,
+        "name": "Espectadores ao vivo | 2H | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 47.26,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 236,
+        "name": "Espectadores ao vivo | 2:30H | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 56,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 237,
+        "name": "Espectadores ao vivo | 3H | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 66.37,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 238,
+        "name": "Espectadores ao vivo | 6H | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 127.1,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 239,
+        "name": "Espectadores ao vivo | 12H | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 243.81,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 501,
+        "name": "Espectadores ao vivo | 1D | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 447.48,
+        "min": 50,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Kwai - Métricas e Outros": [
+      {
+        "id": 241,
+        "name": "Comentários Aleatórios | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 6.85,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 242,
+        "name": "Comentários Personalizados | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 7.68,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 243,
+        "name": "Comentários Aleatório em Live | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 9.25,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 244,
+        "name": "Comentários Personalizados em Live | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 16.75,
+        "min": 100,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 245,
+        "name": "Comentários de Emoji | ❤️🙏🏼😂😍😃🤩 | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 4.88,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 246,
+        "name": "Comentários de Emoji | 💩🤬👿🤢🤮🙄 | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 4.88,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 247,
+        "name": "Compartilhamentos Brasileiros | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1.25,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 248,
+        "name": "Baixar Vídeo | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 4.22,
+        "min": 100,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 249,
+        "name": "Impressão em Vídeo | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 1.88,
+        "min": 100,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Facebook": [
+      {
+        "id": 250,
+        "name": "Monetização | 60K Minutos | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 17.262,
+        "min": 1000,
+        "max": 1000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 251,
+        "name": "Seguidores no Perfil | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1.564,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 252,
+        "name": "Seguidores no Perfil | ⚡️⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 1.564,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 253,
+        "name": "Seguidores em Página | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 4.981,
+        "min": 100,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 254,
+        "name": "Seguidores em Página | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 3.315,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 255,
+        "name": "Curtidas e Seguidores em Página | ⚡️ | ♻️R60 | 🥇",
+        "type": "Default",
+        "rate": 1.689,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 256,
+        "name": "Curtidas ou Seguidores em Página | ⚡️ | ♻️R30 | 🥇AQ",
+        "type": "Default",
+        "rate": 1.564,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 257,
+        "name": "Curtidas Brasileiras em Post | ⚡️ | ♻️R60 | 🥇",
+        "type": "Default",
+        "rate": 25.017,
+        "min": 10,
+        "max": 500,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 259,
+        "name": "Curtidas em Comentários | ⚡️ | ➖ | 💧 | ⭐",
+        "type": "Default",
+        "rate": 7.506,
+        "min": 10,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 260,
+        "name": "Comentários Personalizados | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 14.319,
+        "min": 100,
+        "max": 50000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 261,
+        "name": "Comentários Brasileiros Personalizados | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 412.775,
+        "min": 10,
+        "max": 250,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 262,
+        "name": "Comentários Brasileiros Aleatórios | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 275.184,
+        "min": 10,
+        "max": 250,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 263,
+        "name": "Visualizações | ⚡️⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.116,
+        "min": 100,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 264,
+        "name": "Visualizações | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.116,
+        "min": 100,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 265,
+        "name": "Visualizações em Reels | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.242,
+        "min": 100,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 266,
+        "name": "Espectadores ao vivo | 15M | 🥇",
+        "type": "Default",
+        "rate": 4.204,
+        "min": 20,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 267,
+        "name": "Espectadores ao vivo | 30M | 🥇",
+        "type": "Default",
+        "rate": 10.483,
+        "min": 20,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 268,
+        "name": "Espectadores ao vivo | 1H | 🥇",
+        "type": "Default",
+        "rate": 24.019,
+        "min": 20,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 269,
+        "name": "Espectadores ao vivo | 1:30H | 🥇",
+        "type": "Default",
+        "rate": 31.448,
+        "min": 20,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 270,
+        "name": "Espectadores ao vivo | 2H | 🥇",
+        "type": "Default",
+        "rate": 41.93,
+        "min": 20,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 271,
+        "name": "Espectadores ao vivo | 2:30H | 🥇",
+        "type": "Default",
+        "rate": 52.413,
+        "min": 20,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 272,
+        "name": "Espectadores ao vivo | 3H | 🥇",
+        "type": "Default",
+        "rate": 62.895,
+        "min": 20,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 273,
+        "name": "Espectadores ao vivo | 6H | 🥇",
+        "type": "Default",
+        "rate": 180.142,
+        "min": 20,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 274,
+        "name": "👍 Like em post | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 1.796,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 275,
+        "name": "❤️ Amei | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 1.796,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 276,
+        "name": "😲 Uau | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 0.751,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 277,
+        "name": "😂 Haha | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 0.751,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 278,
+        "name": "😢 Triste | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 0.751,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 279,
+        "name": "😡 Raiva | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 0.751,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 280,
+        "name": "🥰 Apaixonado | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 0.751,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 473,
+        "name": "Curtidas em Post | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 1.202,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 553,
+        "name": "Espectadores ao vivo | 12H | 🥇",
+        "type": "Default",
+        "rate": 131.586,
+        "min": 20,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Telegram": [
+      {
+        "id": 281,
+        "name": "Membros de Canal/Grupo | ⚡️ | ➖ | ⭐",
+        "type": "Default",
+        "rate": 4.056,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 520,
+        "name": "Membros Online 30 Dias | ⚡️ | ➖ | ⭐",
+        "type": "Default",
+        "rate": 47.586,
+        "min": 250,
+        "max": 50000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 282,
+        "name": "Membros de Grupo e de Canal | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 1.877,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 283,
+        "name": "Membros de Grupo e de Canal | ⚡️ | ♻️R90 | 🥇",
+        "type": "Default",
+        "rate": 2.448,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 284,
+        "name": "Membros de Grupo e de Canal | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1.877,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 285,
+        "name": "Membros no Canal Público | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 6.176,
+        "min": 100,
+        "max": 49999,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 286,
+        "name": "Visualizações Nas 5 Últimas Postagens",
+        "type": "Default",
+        "rate": 0.01,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 287,
+        "name": "Visualizações nas 10 Últimas Postagens",
+        "type": "Default",
+        "rate": 0.043,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 288,
+        "name": "Visualizações nas 50 Últimas Postagens",
+        "type": "Default",
+        "rate": 0.086,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 289,
+        "name": "Visualizações nas 100 Últimas Postagens",
+        "type": "Default",
+        "rate": 0.129,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 290,
+        "name": "Visualizações nas 500 Últimas postagens",
+        "type": "Default",
+        "rate": 0.171,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 291,
+        "name": "Visualizações em Postagens Futuras e Passadas (Configurável)",
+        "type": "Default",
+        "rate": 0.817,
+        "min": 10,
+        "max": 99999,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 292,
+        "name": "Reações Negativas | 👎💩 🤮😢 😱 | +Visualizações",
+        "type": "Default",
+        "rate": 0.188,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 293,
+        "name": "Reações Positivas | 👍 ❤️ 🔥 🎉🤩 😁 | +Visualizações",
+        "type": "Default",
+        "rate": 0.082,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 294,
+        "name": "Reações Positivas Premium | 👌 😍 ❤️ 🤡 👍 🐳 | +Visualizações",
+        "type": "Default",
+        "rate": 0.601,
+        "min": 50,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 295,
+        "name": "Reações Automáticas em 50 Posts Futuros | 👍 ❤️ 🔥 🎉 😁  | 💧 |",
+        "type": "Default",
+        "rate": 31.271,
+        "min": 20,
+        "max": 2000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 296,
+        "name": "Reações em Postagens [🐳] + Visualizações",
+        "type": "Default",
+        "rate": 0.423,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 297,
+        "name": "Reações em Postagens [💯] + Visualizações",
+        "type": "Default",
+        "rate": 0.423,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 298,
+        "name": "Reações em Postagens [❤️‍🔥] + Visualizações",
+        "type": "Default",
+        "rate": 0.423,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 299,
+        "name": "Reações em Postagens [🤡] + Visualizações",
+        "type": "Default",
+        "rate": 0.423,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 300,
+        "name": "Reações em Postagens [⚡️] + Visualizações",
+        "type": "Default",
+        "rate": 0.423,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 301,
+        "name": "Reações em Postagens [🏆] + Visualizações",
+        "type": "Default",
+        "rate": 0.482,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 302,
+        "name": "Reações em Postagens [🍓] + Visualizações",
+        "type": "Default",
+        "rate": 0.482,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 303,
+        "name": "Reações em Postagens [🎃] + Visualizações",
+        "type": "Default",
+        "rate": 0.423,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 304,
+        "name": "Reações em Postagens [🍾] + Visualizações",
+        "type": "Default",
+        "rate": 0.423,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 305,
+        "name": "Reações em Postagens [💋] + Visualizações",
+        "type": "Default",
+        "rate": 0.482,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 306,
+        "name": "Reações em Postagens [🥱] + Visualizações",
+        "type": "Default",
+        "rate": 0.463,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 307,
+        "name": "Reações em Postagens [🥴] + Visualizações",
+        "type": "Default",
+        "rate": 0.463,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 308,
+        "name": "Reações em Postagens [🍌] + Visualizações",
+        "type": "Default",
+        "rate": 0.463,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 309,
+        "name": "Reações em Postagens [💔] + Visualizações",
+        "type": "Default",
+        "rate": 0.463,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 310,
+        "name": "Reações em Postagens [😈] + Visualizações",
+        "type": "Default",
+        "rate": 0.463,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 311,
+        "name": "Reações em Postagens [🌚] + Visualizações",
+        "type": "Default",
+        "rate": 0.463,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 312,
+        "name": "Reações em Postagens [😴] + Visualizações",
+        "type": "Default",
+        "rate": 0.463,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 313,
+        "name": "Reações em Postagens [🤓] + Visualizações",
+        "type": "Default",
+        "rate": 0.463,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 314,
+        "name": "Reações em Postagens [👨] + Visualizações",
+        "type": "Default",
+        "rate": 0.463,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 474,
+        "name": "Visualizações nas 30 Últimas postagens",
+        "type": "Default",
+        "rate": 0.257,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 475,
+        "name": "Visualizações nas 50 Últimas postagens",
+        "type": "Default",
+        "rate": 0.428,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 476,
+        "name": "Visualizações nas 100 Últimas postagens",
+        "type": "Default",
+        "rate": 0.854,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 477,
+        "name": "Visualizações nas 200 Últimas postagens",
+        "type": "Default",
+        "rate": 1.708,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 478,
+        "name": "Visualizações nas 500 Últimas postagens",
+        "type": "Default",
+        "rate": 4.269,
+        "min": 10,
+        "max": 2147483647,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Serviços para X/Twitter": [
+      {
+        "id": 315,
+        "name": "Seguidores | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 5.942,
+        "min": 50,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 317,
+        "name": "Retweet | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 9.382,
+        "min": 50,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 318,
+        "name": "Retweet | ⚡️ | ♻️R365 | 🥇",
+        "type": "Default",
+        "rate": 16.316,
+        "min": 50,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 319,
+        "name": "Visualizações em Vídeo | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.029,
+        "min": 100,
+        "max": 100000000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Bluesky": [
+      {
+        "id": 320,
+        "name": "Seguidores | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 9.45,
+        "min": 10,
+        "max": 200000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 321,
+        "name": "Curtidas | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 7.62,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 322,
+        "name": "Retweet | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 8,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 323,
+        "name": "Comentário Personalizado | ⚡️ | ♻️R30 | ⭐",
+        "type": "Custom Comments",
+        "rate": 20.14,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 324,
+        "name": "Comentário Aleatório | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 90.09,
+        "min": 10,
+        "max": 10000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Pinterest": [
+      {
+        "id": 325,
+        "name": "Seguidores | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 7.55,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 326,
+        "name": "Seguidores | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 9.55,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 327,
+        "name": "Curtidas | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 5.46,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 328,
+        "name": "Curtidas | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 6.46,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 329,
+        "name": "Repin | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 6.22,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 330,
+        "name": "Repin | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 7.22,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Google": [
+      {
+        "id": 331,
+        "name": "Avaliações Personalizadas no Google Maps | ⭐⭐⭐⭐⭐",
+        "type": "Custom Comments",
+        "rate": 6000,
+        "min": 1,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Trustpilot": [
+      {
+        "id": 460,
+        "name": "Avaliações Personalizadas no Trust Pilot | ✅✅✅✅✅",
+        "type": "Custom Comments",
+        "rate": 5000,
+        "min": 1,
+        "max": 1000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Threads": [
+      {
+        "id": 332,
+        "name": "Seguidores | ⚡️ | 💧 | 🥇",
+        "type": "Default",
+        "rate": 9.008,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 333,
+        "name": "Seguidores | ⚡️ | ♻️R30 | 💧 | 🥇",
+        "type": "Default",
+        "rate": 9.008,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 334,
+        "name": "Seguidores | ⚡️ | ➖ | 🥇",
+        "type": "Default",
+        "rate": 28.31,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Whatsapp": [
+      {
+        "id": 336,
+        "name": "Membros Brasileiros em Canal | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 18.763,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 337,
+        "name": "Reações Aleatório em Canal | 👍❤️😂😲😥🙏 | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.69,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 338,
+        "name": "Reação em Canal | 👍 | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.69,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 339,
+        "name": "Reação em Canal | ❤️ | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.69,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 340,
+        "name": "Reação em Canal | 😂 | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.69,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 341,
+        "name": "Reação em Canal | 😲 | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.69,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 342,
+        "name": "Reação em Canal | 😥 | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.69,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 343,
+        "name": "Reação em Canal | 🙏 | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 4.69,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 552,
+        "name": "Membros em Canal | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 2.027,
+        "min": 10,
+        "max": 20000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Roblox": [
+      {
+        "id": 461,
+        "name": "Seguidores | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 4.55,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 462,
+        "name": "Seguidores | 🥇 | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 4.75,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 463,
+        "name": "Seguidores | 🥇 | ♻️R60 | ⚡️",
+        "type": "Default",
+        "rate": 5.22,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 464,
+        "name": "Seguidores | 🥇 | ♻️R90 | ⚡️",
+        "type": "Default",
+        "rate": 6.55,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 465,
+        "name": "Seguidores | 🥇 | ♻️R365 | ⚡️",
+        "type": "Default",
+        "rate": 8.05,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 479,
+        "name": "Membros em Comunidade | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 7.26,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 480,
+        "name": "Membros em Comunidade | 🥇 | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 7.86,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 481,
+        "name": "Membros em Comunidade | 🥇 | ♻️R60 | ⚡️",
+        "type": "Default",
+        "rate": 8.46,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 482,
+        "name": "Membros em Comunidade | 🥇 | ♻️R90 | ⚡️",
+        "type": "Default",
+        "rate": 9.06,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 483,
+        "name": "Membros em Comunidade | 🥇 | ♻️R365 | ⚡️",
+        "type": "Default",
+        "rate": 9.66,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 484,
+        "name": "Favoritar Jogos | 🥇 | ⚡️",
+        "type": "Default",
+        "rate": 6.98,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 485,
+        "name": "Favoritar Jogos | 🥇 | ♻️R30 | ⚡️",
+        "type": "Default",
+        "rate": 7.18,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 486,
+        "name": "Favoritar Jogos | 🥇 | ♻️R60 | ⚡️",
+        "type": "Default",
+        "rate": 7.38,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 487,
+        "name": "Favoritar Jogos | 🥇 | ♻️R90 | ⚡️",
+        "type": "Default",
+        "rate": 7.58,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 488,
+        "name": "Favoritar Jogos | 🥇 | ♻️R365 | ⚡️",
+        "type": "Default",
+        "rate": 7.78,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Topick": [
+      {
+        "id": 344,
+        "name": "Seguidores | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 7.56,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 345,
+        "name": "Seguidores brasileiros | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 8.88,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 346,
+        "name": "Seguidores 🚹Masculino | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 16.77,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 347,
+        "name": "Seguidores 🚺Feminino | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 16.77,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 348,
+        "name": "Curtidas | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 5.89,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 349,
+        "name": "Curtidas brasileiras | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 6.89,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 350,
+        "name": "Curtidas 🚹Masculino | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 9.44,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 351,
+        "name": "Curtidas 🚺Feminino | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 9.44,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 352,
+        "name": "Comentários | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 6.93,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 353,
+        "name": "Comentários Personalizados | ⚡️ | ♻️R30 | 🥇",
+        "type": "Custom Comments",
+        "rate": 9.88,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 354,
+        "name": "Comentários Positivos | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 7.12,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 355,
+        "name": "Comentários Negativos | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 7.12,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 356,
+        "name": "Favoritos | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 4.66,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 357,
+        "name": "Visualizações | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 4.33,
+        "min": 15,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Twitch": [
+      {
+        "id": 358,
+        "name": "Seguidores | ⚡️⚡️ | ♻️R365 | ⭐ | ➖",
+        "type": "Default",
+        "rate": 12.5,
+        "min": 1,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 359,
+        "name": "Visualizações em Vídeos | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1.067,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 360,
+        "name": "Visualizações em Clipes | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.215,
+        "min": 10,
+        "max": 10000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 361,
+        "name": "Espectadores em Live | 60 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 9.038,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 362,
+        "name": "Espectadores em Live | 120 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 17.472,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 363,
+        "name": "Espectadores em Live | 180 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 25.701,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 364,
+        "name": "Espectadores em Live | 240 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 34.944,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 365,
+        "name": "Espectadores em Live | 360 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 52.415,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 366,
+        "name": "Espectadores em Live | 720 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 104.83,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 367,
+        "name": "Espectadores em Live | 24 horas | ⚡️ | 🥇AQ",
+        "type": "Default",
+        "rate": 209.66,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 368,
+        "name": "Espectadores em Live | 7 dias | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1255,
+        "min": 5,
+        "max": 1000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 369,
+        "name": "Espectadores em Live | 1 mês | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 2766,
+        "min": 5,
+        "max": 1000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Kick": [
+      {
+        "id": 370,
+        "name": "Seguidores | ⚡️⚡️ | ♻️R365 | ⭐ | ➖",
+        "type": "Default",
+        "rate": 6.77,
+        "min": 1,
+        "max": 100000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 371,
+        "name": "Espectadores em Live | 15 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.438,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 372,
+        "name": "Espectadores em Live | 30 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 0.876,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 373,
+        "name": "Espectadores em Live | 60 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 1.752,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 374,
+        "name": "Espectadores em Live | 120 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 3.503,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 375,
+        "name": "Espectadores em Live | 240 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 7.005,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 376,
+        "name": "Espectadores em Live | 360 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 7.506,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 378,
+        "name": "Espectadores em Live | 720 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 18.012,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 379,
+        "name": "Espectadores em Live | 1440 min | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 36.024,
+        "min": 10,
+        "max": 50000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 458,
+        "name": "Comentários Aleatórios em Live | ⭐ | ⚡️",
+        "type": "Default",
+        "rate": 34.55,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 459,
+        "name": "Comentários Personalizados em Live | ⭐ | ⚡️",
+        "type": "Custom Comments",
+        "rate": 42.67,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Trovo": [
+      {
+        "id": 380,
+        "name": "50-75 Visualizações  por 1 Hora",
+        "type": "Package",
+        "rate": 22.885,
+        "min": 1,
+        "max": 1,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 381,
+        "name": "50-75 Visualizações por 2 horas",
+        "type": "Package",
+        "rate": 34.385,
+        "min": 1,
+        "max": 1,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 382,
+        "name": "50-75 Visualizações por 3 horas",
+        "type": "Package",
+        "rate": 45.885,
+        "min": 1,
+        "max": 1,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 383,
+        "name": "100-150 Visualizações por 1 hora",
+        "type": "Package",
+        "rate": 34.385,
+        "min": 1,
+        "max": 1,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 384,
+        "name": "100-150 Visualizações por 3 horas",
+        "type": "Package",
+        "rate": 57.385,
+        "min": 1,
+        "max": 1,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 385,
+        "name": "450-500 Visualizações por 1 hora",
+        "type": "Package",
+        "rate": 57.385,
+        "min": 1,
+        "max": 1,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 386,
+        "name": "450-500 Visualizações por 2 horas",
+        "type": "Package",
+        "rate": 91.885,
+        "min": 1,
+        "max": 1,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 387,
+        "name": "450-500 Visualizações por 3 horas",
+        "type": "Package",
+        "rate": 114.885,
+        "min": 1,
+        "max": 1,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para SnackVideo": [
+      {
+        "id": 394,
+        "name": "Seguidores | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 5.92,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 395,
+        "name": "Seguidores Brasileiros 🚹Masculino | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 6.38,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 396,
+        "name": "Seguidores Brasileiros 🚺Feminino | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 6.38,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 397,
+        "name": "Curtidas | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 3.38,
+        "min": 10,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 398,
+        "name": "Curtidas + Visualizações | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 4.25,
+        "min": 10,
+        "max": 600000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 399,
+        "name": "Curtidas Brasileiras 🚹Masculino | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 6.38,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 400,
+        "name": "Curtidas Brasileiras 🚺Feminino | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 6.38,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 401,
+        "name": "Comentários Aleatórios | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 5.38,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 402,
+        "name": "Comentários Positivos | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 6.38,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 403,
+        "name": "Comentários Negativos | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 6.38,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 404,
+        "name": "Comentários Personalizados | ⚡️ | ♻️R30 | ⭐",
+        "type": "Custom Comments",
+        "rate": 8.25,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 405,
+        "name": "Comentários Aleatórios em Transmissão | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 8.9,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 406,
+        "name": "Comentários Personalizados em Transmissão | ⚡️ | ♻️R30 | ⭐",
+        "type": "Custom Comments",
+        "rate": 9.81,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 407,
+        "name": "Curtidas em Transmissão | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 7.05,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 408,
+        "name": "Compartilhamentos em Transmissão | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 8.66,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 409,
+        "name": "Compartilhamentos | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 3.55,
+        "min": 10,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 410,
+        "name": "Baixamentos | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 2.98,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 411,
+        "name": "Descurtidas | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 3.13,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 412,
+        "name": "Curtidas em Comentários | ⚡️ | ♻️R30 | ⭐",
+        "type": "Comment Likes",
+        "rate": 9.14,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 413,
+        "name": "Salvamentos | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 7.13,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Linkedin": [
+      {
+        "id": 414,
+        "name": "Seguidores em Perfil | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 531.604,
+        "min": 5,
+        "max": 1000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 415,
+        "name": "Curtidas em Publicações | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 291.444,
+        "min": 10,
+        "max": 6500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 416,
+        "name": "Curtidas em Publicações | ⚡️ | 🥇",
+        "type": "Default",
+        "rate": 163.152,
+        "min": 10,
+        "max": 5000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 417,
+        "name": "Comentários | ⚡️ | 🥇",
+        "type": "Custom Comments",
+        "rate": 287.692,
+        "min": 5,
+        "max": 1000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Reddit": [
+      {
+        "id": 418,
+        "name": "Inscritos | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 5.004,
+        "min": 100,
+        "max": 4500,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 419,
+        "name": "Visualizações | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 28.144,
+        "min": 100,
+        "max": 15000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 420,
+        "name": "Compartilhamento | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 21.89,
+        "min": 100,
+        "max": 4500,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Dribble": [
+      {
+        "id": 421,
+        "name": "Seguidores | ⚡️ | ➖ | 💧 | 🥇",
+        "type": "Default",
+        "rate": 3.909,
+        "min": 50,
+        "max": 1000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 422,
+        "name": "Curtidas | ⚡️ | ➖ | 💧 | 🥇",
+        "type": "Default",
+        "rate": 3.909,
+        "min": 50,
+        "max": 1000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Serviços para Rumble": [
+      {
+        "id": 423,
+        "name": "Visualizações | ⚡️ | 💧 | 🥇",
+        "type": "Default",
+        "rate": 4.378,
+        "min": 1000,
+        "max": 500000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 424,
+        "name": "Visualizações Americanas | ⚡️ | 💧 | 🥇",
+        "type": "Default",
+        "rate": 4.378,
+        "min": 1000,
+        "max": 500000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 425,
+        "name": "Visualizações Brasileiras | ⚡️ | 💧 | 🥇",
+        "type": "Default",
+        "rate": 4.378,
+        "min": 1000,
+        "max": 500000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 426,
+        "name": "Visualizações Russas | ⚡️ | 💧 | 🥇",
+        "type": "Default",
+        "rate": 4.378,
+        "min": 1000,
+        "max": 500000,
+        "refill": false,
+        "cancel": true
+      },
+      {
+        "id": 427,
+        "name": "Visualizações Latam | ⚡️ | 💧 | 🥇",
+        "type": "Default",
+        "rate": 4.378,
+        "min": 1000,
+        "max": 500000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Serviços para Coinmarketcap": [
+      {
+        "id": 428,
+        "name": "Seguidores em Crypto | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 7.88,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 429,
+        "name": "Seguidores em Crypto | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 8.44,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 430,
+        "name": "Seguidores em Perfil | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 7.88,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 431,
+        "name": "Seguidores em Perfil | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 8.44,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 432,
+        "name": "Seguidores em Perfil | ⚡️ | ♻️R30 | ⭐",
+        "type": "Default",
+        "rate": 5.89,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 433,
+        "name": "Curtidas | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 6.44,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 434,
+        "name": "Comentários Aleatórios | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 10.45,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 435,
+        "name": "Comentários Customizados | ⚡️ | ⭐",
+        "type": "Custom Comments",
+        "rate": 12.45,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 436,
+        "name": "Reposts | ⚡️ | ⭐",
+        "type": "Default",
+        "rate": 7.22,
+        "min": 10,
+        "max": 500000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Denuncias": [
+      {
+        "id": 113,
+        "name": "Denuncia no Instagram em Perfil🚫",
+        "type": "Default",
+        "rate": 6.831,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 114,
+        "name": "Denuncia no Instagram em Post🚫",
+        "type": "Default",
+        "rate": 10.051,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 115,
+        "name": "Denuncia no Youtube em Vídeo🚫",
+        "type": "Default",
+        "rate": 6.601,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 116,
+        "name": "Denuncia no Youtube em Canal🚫",
+        "type": "Default",
+        "rate": 9.131,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 117,
+        "name": "Denuncia no Tiktok em Perfil🚫",
+        "type": "Default",
+        "rate": 10.569,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 118,
+        "name": "Denuncia no Tiktok em Vídeo🚫",
+        "type": "Default",
+        "rate": 9.476,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 119,
+        "name": "Denuncia no Facebook em Post🚫",
+        "type": "Default",
+        "rate": 12.926,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 120,
+        "name": "Denuncia no Facebook em Perfil🚫",
+        "type": "Default",
+        "rate": 15.226,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 121,
+        "name": "Denuncia no Kwai em Perfil🚫",
+        "type": "Default",
+        "rate": 9.706,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      },
+      {
+        "id": 122,
+        "name": "Denuncia no Kwai em Post🚫",
+        "type": "Default",
+        "rate": 9.706,
+        "min": 1000,
+        "max": 1000000,
+        "refill": false,
+        "cancel": false
+      }
+    ],
+    "Tráfego para Site": [
+      {
+        "id": 437,
+        "name": "Tráfego Brasileiro do Google",
+        "type": "Default",
+        "rate": 3.128,
+        "min": 100,
+        "max": 1000000,
+        "refill": false,
+        "cancel": true
+      }
+    ],
+    "Privado": [
+      {
+        "id": 6,
+        "name": "Seguidores Mundiais | ⚡️ | ♻️R30 | 🥇",
+        "type": "Default",
+        "rate": 8.173,
+        "min": 10,
+        "max": 100000,
+        "refill": false,
+        "cancel": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMM Manager & Automação de Refill</title>
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .card { background-color: #161b22; border: 1px solid #30363d; }
+    .input-dark { background-color: #0d1117; border: 1px solid #30363d; color: #f0f6fc; }
+    .input-dark:focus { border-color: #58a6ff; outline: none; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Topbar -->
+  <header class="card border-b border-gray-800 px-6 py-4 flex flex-wrap justify-between items-center gap-4">
+    <div class="flex items-center gap-3">
+      <div class="bg-blue-600/20 text-blue-400 p-2 rounded-lg">
+        <i data-lucide="shield-check" class="w-6 h-6"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-bold text-white tracking-wide">SMM Painel Pro</h1>
+        <p class="text-xs text-gray-400">Monitor de Contagem de Seguidores & Refill Automático</p>
+      </div>
+    </div>
+
+    <!-- Saldo Badge -->
+    <div class="flex items-center gap-3">
+      <div id="balanceBadge" class="bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 px-4 py-2 rounded-lg flex items-center gap-2">
+        <i data-lucide="wallet" class="w-4 h-4"></i>
+        <span class="text-xs font-semibold uppercase tracking-wider">Saldo:</span>
+        <span id="balanceText" class="font-bold text-base">Carregando...</span>
+      </div>
+      <button onclick="loadBalance()" title="Atualizar Saldo" class="p-2 card hover:border-gray-500 rounded-lg text-gray-400 hover:text-white transition">
+        <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <div class="bg-gray-900 border-b border-gray-800 px-6">
+    <nav class="flex gap-6">
+      <button onclick="switchTab('orders')" id="tabBtn-orders" class="py-3 font-semibold text-blue-400 border-b-2 border-blue-500 flex items-center gap-2">
+        <i data-lucide="user-check" class="w-4 h-4"></i> Monitor de Contas & Pedidos
+      </button>
+      <button onclick="switchTab('new-order')" id="tabBtn-new-order" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2">
+        <i data-lucide="plus-circle" class="w-4 h-4"></i> Novo Pedido
+      </button>
+      <button onclick="switchTab('services')" id="tabBtn-services" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2">
+        <i data-lucide="list" class="w-4 h-4"></i> Catálogo (<span id="servicesCount">0</span>)
+      </button>
+      <button onclick="switchTab('refill-tool')" id="tabBtn-refill-tool" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2">
+        <i data-lucide="repeat" class="w-4 h-4"></i> Gestor Manual de Refill
+      </button>
+    </nav>
+  </div>
+
+  <!-- Content Container -->
+  <main class="flex-1 p-6 max-w-7xl w-full mx-auto space-y-6">
+
+    <!-- TAB 1: MONITOR DE CONTAS & PEDIDOS -->
+    <section id="tab-orders" class="space-y-4">
+      <div class="flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            Monitor de Contas & Seguidores
+            <span class="text-xs font-normal bg-blue-950 text-blue-400 border border-blue-800 px-2 py-0.5 rounded-full">Proteção contra Quedas</span>
+          </h2>
+          <p class="text-xs text-gray-400">Verifique a contagem atual da conta e dispare reposição (Refill) se cair abaixo do teto contratado</p>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="syncOrders()" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-4 py-2.5 rounded-lg flex items-center gap-2 transition">
+            <i data-lucide="refresh-cw" class="w-4 h-4" id="syncIcon"></i> Sincronizar com Provedor
+          </button>
+          <button onclick="runAutoRefillCheck()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-4 py-2.5 rounded-lg flex items-center gap-2 transition shadow">
+            <i data-lucide="zap" class="w-4 h-4"></i> Disparar Refills Necessários
+          </button>
+        </div>
+      </div>
+
+      <div class="card rounded-xl overflow-hidden shadow-lg">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-gray-900/80 text-gray-400 border-b border-gray-800 text-xs uppercase tracking-wider">
+              <tr>
+                <th class="p-4">ID Pedido</th>
+                <th class="p-4">Conta / Perfil</th>
+                <th class="p-4 text-center">Início</th>
+                <th class="p-4 text-center">Contratado</th>
+                <th class="p-4 text-center">Teto Esperado</th>
+                <th class="p-4 text-center">Seguidores Atuais</th>
+                <th class="p-4 text-center">Status Queda</th>
+                <th class="p-4 text-right">Ação de Refill</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody" class="divide-y divide-gray-800">
+              <tr>
+                <td colspan="8" class="p-6 text-center text-gray-500">Carregando contas e pedidos...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: NOVO PEDIDO -->
+    <section id="tab-new-order" class="hidden max-w-3xl mx-auto space-y-4">
+      <div class="card p-6 rounded-xl space-y-6">
+        <div>
+          <h2 class="text-lg font-bold text-white">Criar Novo Pedido</h2>
+          <p class="text-xs text-gray-400">Envie ordens diretamente para o provedor SMM</p>
+        </div>
+
+        <form id="newOrderForm" onsubmit="submitNewOrder(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Filtrar Categoria</label>
+            <select id="categorySelect" onchange="filterServicesByCategory()" class="w-full input-dark rounded-lg p-2.5 text-sm">
+              <option value="">-- Selecione uma Categoria --</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Serviço *</label>
+            <select id="serviceSelect" onchange="updateServiceDetails()" required class="w-full input-dark rounded-lg p-2.5 text-sm">
+              <option value="">-- Selecione o Serviço --</option>
+            </select>
+            <div id="serviceInfoBox" class="hidden mt-2 p-3 bg-blue-950/40 border border-blue-900/60 rounded-lg text-xs space-y-1">
+              <div class="text-blue-300 font-semibold" id="svcTitle"></div>
+              <div class="text-gray-400 flex gap-4">
+                <span>Taxa / 1k: <b class="text-white" id="svcRate"></b></span>
+                <span>Mín: <b class="text-white" id="svcMin"></b></span>
+                <span>Máx: <b class="text-white" id="svcMax"></b></span>
+                <span>Garantia: <b class="text-white" id="svcRefill"></b></span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Link ou Perfil (@) *</label>
+            <input type="text" id="orderLink" placeholder="https://www.instagram.com/seuperfil/" required class="w-full input-dark rounded-lg p-2.5 text-sm">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Quantidade *</label>
+            <input type="number" id="orderQty" placeholder="Ex: 500" required class="w-full input-dark rounded-lg p-2.5 text-sm" oninput="calculateOrderCost()">
+            <p id="costPreview" class="text-xs text-emerald-400 mt-1 font-semibold"></p>
+          </div>
+
+          <div class="border-t border-gray-800 pt-3">
+            <button type="button" onclick="toggleDripFeed()" class="text-xs font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1">
+              <i data-lucide="chevron-down" class="w-3 h-3"></i> Opções Avançadas (Drip-feed / Entregas parceladas)
+            </button>
+            <div id="dripFeedBox" class="hidden grid grid-cols-2 gap-4 mt-3">
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Execuções (Runs)</label>
+                <input type="number" id="orderRuns" placeholder="Ex: 5" class="w-full input-dark rounded-lg p-2.5 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Intervalo (Minutos)</label>
+                <input type="number" id="orderInterval" placeholder="Ex: 60" class="w-full input-dark rounded-lg p-2.5 text-sm">
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button type="submit" id="btnSubmitOrder" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition">
+              <i data-lucide="send" class="w-4 h-4"></i> Confirmar e Enviar Pedido
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- TAB 3: CATÁLOGO DE SERVIÇOS -->
+    <section id="tab-services" class="hidden space-y-4">
+      <div class="flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h2 class="text-lg font-bold text-white">Catálogo Completo</h2>
+          <p class="text-xs text-gray-400">Consulte taxas, limites e tipos de serviços</p>
+        </div>
+        <div class="flex gap-3">
+          <input type="text" id="serviceSearch" oninput="filterCatalogTable()" placeholder="Buscar serviço ou ID..." class="input-dark px-3 py-2 rounded-lg text-sm w-64">
+        </div>
+      </div>
+
+      <div class="card rounded-xl overflow-hidden shadow-lg">
+        <div class="overflow-x-auto max-h-[600px]">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-gray-900/80 sticky top-0 text-gray-400 border-b border-gray-800 text-xs uppercase tracking-wider">
+              <tr>
+                <th class="p-4 w-16">ID</th>
+                <th class="p-4">Serviço</th>
+                <th class="p-4">Categoria</th>
+                <th class="p-4 text-center">Taxa / 1k</th>
+                <th class="p-4 text-center">Mín / Máx</th>
+                <th class="p-4 text-center">Refill</th>
+                <th class="p-4 text-center">Cancel</th>
+              </tr>
+            </thead>
+            <tbody id="catalogTableBody" class="divide-y divide-gray-800">
+              <tr>
+                <td colspan="7" class="p-6 text-center text-gray-500">Carregando catálogo...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: GESTOR MANUAL DE REFILL -->
+    <section id="tab-refill-tool" class="hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="card p-6 rounded-xl space-y-4">
+          <div class="flex items-center gap-2 text-white">
+            <i data-lucide="repeat" class="w-5 h-5 text-blue-400"></i>
+            <h2 class="text-lg font-bold">Solicitar Refill por ID</h2>
+          </div>
+          <p class="text-xs text-gray-400">
+            Dispare um pedido de reposição manual para 1 pedido ou múltiplos IDs separados por vírgula.
+          </p>
+
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">ID(s) do Pedido</label>
+              <input type="text" id="refillInput" placeholder="Ex: 96770 ou 96770,96579" class="w-full input-dark rounded-lg p-2.5 text-sm">
+            </div>
+            <button onclick="triggerRefill()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 rounded-lg flex items-center justify-center gap-2 transition">
+              <i data-lucide="zap" class="w-4 h-4"></i> Enviar Solicitação de Refill
+            </button>
+            <div id="refillResult" class="hidden p-3 rounded-lg text-xs font-mono"></div>
+          </div>
+        </div>
+
+        <div class="card p-6 rounded-xl space-y-4">
+          <div class="flex items-center gap-2 text-white">
+            <i data-lucide="activity" class="w-5 h-5 text-emerald-400"></i>
+            <h2 class="text-lg font-bold">Consultar Status do Refill</h2>
+          </div>
+          <p class="text-xs text-gray-400">
+            Acompanhe o andamento de um Refill ID retornado pela API.
+          </p>
+
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">ID do Refill</label>
+              <input type="text" id="refillStatusInput" placeholder="Ex: 1 ou 1,2,3" class="w-full input-dark rounded-lg p-2.5 text-sm">
+            </div>
+            <button onclick="checkRefillStatus()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-lg flex items-center justify-center gap-2 transition">
+              <i data-lucide="search" class="w-4 h-4"></i> Consultar Andamento
+            </button>
+            <div id="refillStatusResult" class="hidden p-3 rounded-lg text-xs font-mono"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card p-6 rounded-xl border border-blue-900/40 bg-gradient-to-r from-blue-950/20 to-transparent space-y-3">
+        <h3 class="text-sm font-bold text-blue-400 uppercase tracking-wider flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-4 h-4"></i> Regra de Manutenção Econômica
+        </h3>
+        <p class="text-xs text-gray-300 leading-relaxed">
+          Para <b>apenas manter os seguidores</b> de uma conta sem gastar todo mês:
+          <br>1. O monitor calcula o <b>Teto Esperado</b> (`start_count + quantity`).
+          <br>2. Ao clicar em <b>"Ver Perfil / Atualizar"</b> ou inserir a contagem que o Instagram exibe, se o número estiver abaixo do teto, o botão de <b>Refill</b> fica em alerta vermelho pronto para envio com 1 clique!
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- App Script -->
+  <script>
+    let allServices = [];
+    let localOrders = [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      loadBalance();
+      loadServices();
+      loadLocalOrders();
+    });
+
+    function switchTab(tabName) {
+      ['orders', 'new-order', 'services', 'refill-tool'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tabName);
+        const btn = document.getElementById(`tabBtn-${t}`);
+        if (t === tabName) {
+          btn.className = "py-3 font-semibold text-blue-400 border-b-2 border-blue-500 flex items-center gap-2";
+        } else {
+          btn.className = "py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2";
+        }
+      });
+      lucide.createIcons();
+    }
+
+    async function loadBalance() {
+      const txt = document.getElementById('balanceText');
+      try {
+        const res = await fetch('/api/balance');
+        const data = await res.json();
+        if (data.balance) {
+          txt.innerText = `${parseFloat(data.balance).toLocaleString('pt-BR', { style: 'currency', currency: data.currency || 'BRL' })}`;
+        } else {
+          txt.innerText = "Erro ao carregar";
+        }
+      } catch (e) {
+        txt.innerText = "Offline";
+      }
+    }
+
+    async function loadLocalOrders() {
+      const tbody = document.getElementById('ordersTableBody');
+      try {
+        const res = await fetch('/api/orders/local');
+        localOrders = await res.json();
+
+        if (localOrders.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-gray-500">Nenhum pedido registrado ainda.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = localOrders.map(o => {
+          const teto = o.targetAmount || (parseInt(o.start_count || 0) + parseInt(o.quantity || 0));
+          const current = o.currentFollowers;
+          const hasDrop = current !== null && current !== undefined && current < teto;
+          const dropAmount = hasDrop ? (teto - current) : 0;
+
+          let statusBadge = '';
+          if (current === null || current === undefined) {
+            statusBadge = `<span class="text-xs text-gray-400 bg-gray-800 px-2 py-1 rounded">Não verificado</span>`;
+          } else if (hasDrop) {
+            statusBadge = `<span class="text-xs font-bold text-red-400 bg-red-950 border border-red-800 px-2.5 py-1 rounded-full animate-pulse">Queda de ${dropAmount} ⚠️</span>`;
+          } else {
+            statusBadge = `<span class="text-xs font-bold text-emerald-400 bg-emerald-950 border border-emerald-800 px-2.5 py-1 rounded-full">Estável (${current}) ✅</span>`;
+          }
+
+          return `
+            <tr class="hover:bg-gray-800/40 transition">
+              <td class="p-4 font-mono font-semibold text-white">#${o.orderId}</td>
+              <td class="p-4">
+                <div class="font-medium text-gray-200">${o.serviceName || 'Serviço #' + o.serviceId}</div>
+                <div class="flex items-center gap-2 mt-1">
+                  <a href="${o.link}" target="_blank" class="text-blue-400 hover:underline text-xs flex items-center gap-1">
+                    ${o.link} <i data-lucide="external-link" class="w-3 h-3"></i>
+                  </a>
+                  <button onclick="promptUpdateFollowers(${o.orderId}, ${teto})" class="text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 px-2 py-0.5 rounded transition">
+                    Atualizar Contagem
+                  </button>
+                </div>
+              </td>
+              <td class="p-4 text-center font-mono text-gray-400">${o.start_count ?? '-'}</td>
+              <td class="p-4 text-center font-bold text-white">${o.quantity}</td>
+              <td class="p-4 text-center font-mono font-bold text-emerald-400 text-base">${teto}</td>
+              <td class="p-4 text-center font-mono font-bold ${hasDrop ? 'text-red-400' : 'text-gray-200'}">
+                ${current !== null && current !== undefined ? current : '-'}
+              </td>
+              <td class="p-4 text-center">
+                ${statusBadge}
+              </td>
+              <td class="p-4 text-right">
+                <button onclick="requestOrderRefill(${o.orderId})"
+                        class="${hasDrop ? 'bg-red-600 hover:bg-red-500 text-white font-bold animate-bounce' : 'bg-gray-800 hover:bg-blue-600 text-gray-300 hover:text-white'} px-3 py-1.5 rounded-lg text-xs transition flex items-center gap-1.5 ml-auto"
+                        title="Acionar Reposição">
+                  <i data-lucide="repeat" class="w-3.5 h-3.5"></i> ${hasDrop ? 'Repor Agora ♻️' : 'Refill ♻️'}
+                </button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+        lucide.createIcons();
+      } catch (e) {
+        tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-red-400">Falha ao buscar pedidos.</td></tr>`;
+      }
+    }
+
+    async function promptUpdateFollowers(orderId, teto) {
+      const input = prompt(`Quantos seguidores a conta tem no momento? (Teto esperado do contrato: ${teto})`);
+      if (input === null || input.trim() === '') return;
+
+      const num = parseInt(input, 10);
+      if (isNaN(num)) return alert('Digite um número válido');
+
+      try {
+        const res = await fetch('/api/orders/update-followers', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ orderId, currentFollowers: num })
+        });
+        const data = await res.json();
+        if (data.success) {
+          loadLocalOrders();
+        }
+      } catch (err) {
+        alert('Erro ao atualizar: ' + err.message);
+      }
+    }
+
+    async function runAutoRefillCheck() {
+      try {
+        const res = await fetch('/api/orders/auto-refill-check', { method: 'POST' });
+        const data = await res.json();
+        if (data.count === 0) {
+          alert('✅ Nenhuma conta com queda pendente no momento!');
+        } else {
+          alert(`⚡ ${data.count} reposição(ões) solicitada(s) com sucesso!\n${JSON.stringify(data.actions, null, 2)}`);
+          loadLocalOrders();
+        }
+      } catch (e) {
+        alert('Erro ao verificar refills: ' + e.message);
+      }
+    }
+
+    async function syncOrders() {
+      const icon = document.getElementById('syncIcon');
+      icon.classList.add('animate-spin');
+      try {
+        await fetch('/api/orders/sync', { method: 'POST' });
+        await loadLocalOrders();
+      } finally {
+        icon.classList.remove('animate-spin');
+      }
+    }
+
+    async function loadServices() {
+      try {
+        const res = await fetch('/api/services');
+        const data = await res.json();
+        allServices = data.services || [];
+        document.getElementById('servicesCount').innerText = allServices.length;
+
+        populateCategories(allServices);
+        renderCatalogTable(allServices);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function populateCategories(services) {
+      const cats = [...new Set(services.map(s => s.category).filter(Boolean))].sort();
+      const select = document.getElementById('categorySelect');
+      select.innerHTML = '<option value="">-- Selecione uma Categoria --</option>' +
+        cats.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    function filterServicesByCategory() {
+      const cat = document.getElementById('categorySelect').value;
+      const svcSelect = document.getElementById('serviceSelect');
+      const filtered = cat ? allServices.filter(s => s.category === cat) : allServices;
+
+      svcSelect.innerHTML = '<option value="">-- Selecione o Serviço --</option>' +
+        filtered.map(s => `<option value="${s.service}">#${s.service} - ${s.name} (R$ ${s.rate}/1k)</option>`).join('');
+
+      document.getElementById('serviceInfoBox').classList.add('hidden');
+    }
+
+    function updateServiceDetails() {
+      const svcId = parseInt(document.getElementById('serviceSelect').value, 10);
+      const svc = allServices.find(s => s.service === svcId);
+      const infoBox = document.getElementById('serviceInfoBox');
+
+      if (!svc) {
+        infoBox.classList.add('hidden');
+        return;
+      }
+
+      infoBox.classList.remove('hidden');
+      document.getElementById('svcTitle').innerText = `#${svc.service} - ${svc.name}`;
+      document.getElementById('svcRate').innerText = `R$ ${svc.rate}`;
+      document.getElementById('svcMin').innerText = svc.min;
+      document.getElementById('svcMax').innerText = svc.max;
+      document.getElementById('svcRefill').innerText = svc.refill ? 'Sim ✅' : (svc.name.includes('R') ? 'Possui no título' : 'Não');
+      calculateOrderCost();
+    }
+
+    function calculateOrderCost() {
+      const svcId = parseInt(document.getElementById('serviceSelect').value, 10);
+      const qty = parseInt(document.getElementById('orderQty').value, 10);
+      const preview = document.getElementById('costPreview');
+
+      if (!svcId || !qty || isNaN(qty)) {
+        preview.innerText = '';
+        return;
+      }
+
+      const svc = allServices.find(s => s.service === svcId);
+      if (svc && svc.rate) {
+        const cost = (qty / 1000) * parseFloat(svc.rate);
+        preview.innerText = `Custo estimado: ${cost.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+      }
+    }
+
+    function toggleDripFeed() {
+      const box = document.getElementById('dripFeedBox');
+      box.classList.toggle('hidden');
+    }
+
+    async function submitNewOrder(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmitOrder');
+      btn.disabled = true;
+      btn.innerText = "Processando Pedido...";
+
+      const payload = {
+        service: document.getElementById('serviceSelect').value,
+        link: document.getElementById('orderLink').value,
+        quantity: document.getElementById('orderQty').value,
+        runs: document.getElementById('orderRuns').value || undefined,
+        interval: document.getElementById('orderInterval').value || undefined
+      };
+
+      try {
+        const res = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+
+        if (result.order) {
+          alert(`✅ Pedido #${result.order} criado com sucesso!`);
+          document.getElementById('newOrderForm').reset();
+          document.getElementById('serviceInfoBox').classList.add('hidden');
+          loadBalance();
+          loadLocalOrders();
+          switchTab('orders');
+        } else {
+          alert(`❌ Erro da API: ${result.error || JSON.stringify(result)}`);
+        }
+      } catch (err) {
+        alert(`Erro de conexão: ${err.message}`);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i> Confirmar e Enviar Pedido`;
+        lucide.createIcons();
+      }
+    }
+
+    function renderCatalogTable(services) {
+      const tbody = document.getElementById('catalogTableBody');
+      tbody.innerHTML = services.map(s => `
+        <tr class="hover:bg-gray-800/40 transition">
+          <td class="p-4 font-mono font-semibold text-gray-400">#${s.service}</td>
+          <td class="p-4 font-medium text-white">${s.name}</td>
+          <td class="p-4 text-xs text-gray-400">${s.category || '-'}</td>
+          <td class="p-4 text-center font-bold text-emerald-400">R$ ${parseFloat(s.rate).toFixed(2)}</td>
+          <td class="p-4 text-center text-xs text-gray-300 font-mono">${s.min} / ${s.max}</td>
+          <td class="p-4 text-center">
+            ${s.refill ? '<span class="text-emerald-400 font-bold">Sim</span>' : '<span class="text-gray-500">Não</span>'}
+          </td>
+          <td class="p-4 text-center">
+            ${s.cancel ? '<span class="text-emerald-400 font-bold">Sim</span>' : '<span class="text-gray-500">Não</span>'}
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterCatalogTable() {
+      const q = document.getElementById('serviceSearch').value.toLowerCase();
+      const filtered = allServices.filter(s =>
+        s.name.toLowerCase().includes(q) ||
+        (s.category && s.category.toLowerCase().includes(q)) ||
+        String(s.service) === q
+      );
+      renderCatalogTable(filtered);
+    }
+
+    async function requestOrderRefill(orderId) {
+      if (!confirm(`Deseja acionar reposição (Refill) para o pedido #${orderId}?`)) return;
+      try {
+        const res = await fetch('/api/refill', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ order: orderId })
+        });
+        const data = await res.json();
+        alert(JSON.stringify(data, null, 2));
+      } catch (e) {
+        alert('Erro ao chamar refill: ' + e.message);
+      }
+    }
+
+    async function triggerRefill() {
+      const input = document.getElementById('refillInput').value.trim();
+      const resultBox = document.getElementById('refillResult');
+      if (!input) return alert('Digite o ID do pedido');
+
+      resultBox.classList.remove('hidden');
+      resultBox.className = "p-3 rounded-lg text-xs font-mono bg-gray-800 text-gray-300";
+      resultBox.innerText = "Enviando...";
+
+      try {
+        const res = await fetch('/api/refill', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ orders: input })
+        });
+        const data = await res.json();
+        resultBox.innerText = JSON.stringify(data, null, 2);
+      } catch (e) {
+        resultBox.innerText = 'Erro: ' + e.message;
+      }
+    }
+
+    async function checkRefillStatus() {
+      const input = document.getElementById('refillStatusInput').value.trim();
+      const resultBox = document.getElementById('refillStatusResult');
+      if (!input) return alert('Digite o ID do refill');
+
+      resultBox.classList.remove('hidden');
+      resultBox.className = "p-3 rounded-lg text-xs font-mono bg-gray-800 text-gray-300";
+      resultBox.innerText = "Consultando...";
+
+      try {
+        const res = await fetch(`/api/refill/status/${input}`);
+        const data = await res.json();
+        resultBox.innerText = JSON.stringify(data, null, 2);
+      } catch (e) {
+        resultBox.innerText = 'Erro: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>

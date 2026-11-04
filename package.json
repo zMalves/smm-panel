@@ -1,0 +1,12 @@
+{
+  "name": "smm-panel-manager",
+  "version": "1.0.0",
+  "description": "Painel de Gestão e Automação SMM com suporte a Refill e Gestão de Pedidos",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
