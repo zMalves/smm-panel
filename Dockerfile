@@ -1,10 +1,10 @@
-# Imagem base com suporte a compilação nativa para SQLite
-FROM node:20-alpine
-
-# Instala ferramentas para compilar módulos nativos C++ (necessário para better-sqlite3)
-RUN apk add --no-cache python3 make g++
+# Base oficial Node.js 22 (LTS) em Alpine
+FROM node:22-alpine
 
 WORKDIR /app
+
+# Instala pacotes do sistema necessários para build do better-sqlite3
+RUN apk add --no-cache python3 make g++
 
 COPY package*.json ./
 
