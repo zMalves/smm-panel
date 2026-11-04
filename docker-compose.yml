@@ -1,0 +1,11 @@
+services:
+  smm-panel:
+    build: .
+    container_name: smm-panel
+    restart: unless-stopped
+    ports:
+      - "3070:3000"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
