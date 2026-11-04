@@ -8,5 +8,8 @@
   },
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "ssh2": "^1.17.0"
   }
 }
