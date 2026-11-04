@@ -144,3 +144,4 @@ No seu arquivo `mcpServers` (ex: `claude_desktop_config.json` ou settings do seu
 ```
 
 Para chamadas diretas via **Node.js / cURL / n8n / Python**, você só precisa fazer um `POST` no endpoint `/mcp/call` passando o nome da tool e os argumentos.
+

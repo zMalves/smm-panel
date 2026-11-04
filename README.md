@@ -73,3 +73,4 @@ smm-panel/
 ├── .env                          # Configurações de API Key e URL
 └── package.json
 ```
+

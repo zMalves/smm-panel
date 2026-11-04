@@ -111,3 +111,4 @@ module.exports = {
   mcpAuthMiddleware,
   JWT_SECRET
 };
+

@@ -54,3 +54,4 @@ Acesse a aba **Tokens de API & Usuários** no painel web:
 - **Gerar Novo Token:** Crie chaves com nomes descritivos (ex: `Bot WhatsApp`, `n8n Flow Principal`, `Dashboard Admin`).
 - **Revogar Tokens:** Cancele o acesso de qualquer integração imediatamente com 1 clique.
 - **Criar Operadores/Usuários:** Defina usuários (`admin` ou `operator`) com senhas criptografadas em `bcrypt` para sua equipe gerenciar o sistema.
+
