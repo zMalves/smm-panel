@@ -44,18 +44,21 @@
 
   <!-- Navigation Tabs -->
   <div class="bg-gray-900 border-b border-gray-800 px-6">
-    <nav class="flex gap-6">
-      <button onclick="switchTab('orders')" id="tabBtn-orders" class="py-3 font-semibold text-blue-400 border-b-2 border-blue-500 flex items-center gap-2">
+    <nav class="flex gap-6 overflow-x-auto">
+      <button onclick="switchTab('orders')" id="tabBtn-orders" class="py-3 font-semibold text-blue-400 border-b-2 border-blue-500 flex items-center gap-2 whitespace-nowrap">
         <i data-lucide="user-check" class="w-4 h-4"></i> Monitor de Contas & Pedidos
       </button>
-      <button onclick="switchTab('new-order')" id="tabBtn-new-order" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2">
+      <button onclick="switchTab('crons')" id="tabBtn-crons" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap">
+        <i data-lucide="clock" class="w-4 h-4"></i> Automação (Cron Jobs)
+      </button>
+      <button onclick="switchTab('new-order')" id="tabBtn-new-order" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap">
         <i data-lucide="plus-circle" class="w-4 h-4"></i> Novo Pedido
       </button>
-      <button onclick="switchTab('services')" id="tabBtn-services" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2">
+      <button onclick="switchTab('services')" id="tabBtn-services" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap">
         <i data-lucide="list" class="w-4 h-4"></i> Catálogo (<span id="servicesCount">0</span>)
       </button>
-      <button onclick="switchTab('refill-tool')" id="tabBtn-refill-tool" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2">
-        <i data-lucide="repeat" class="w-4 h-4"></i> Gestor Manual de Refill
+      <button onclick="switchTab('refill-tool')" id="tabBtn-refill-tool" class="py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap">
+        <i data-lucide="repeat" class="w-4 h-4"></i> Gestor Manual
       </button>
     </nav>
   </div>
@@ -102,6 +105,49 @@
               <tr>
                 <td colspan="8" class="p-6 text-center text-gray-500">Carregando contas e pedidos...</td>
               </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB CRONS: GERENCIADOR DE TAREFAS CRON -->
+    <section id="tab-crons" class="hidden space-y-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            Tarefas Agendadas (Cron Jobs)
+            <span class="text-xs bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-semibold">Ativo em Background</span>
+          </h2>
+          <p class="text-xs text-gray-400">Automações diárias de verificação de contas, reposição e sincronização de dados</p>
+        </div>
+        <button onclick="openCronModal()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition">
+          <i data-lucide="plus" class="w-4 h-4"></i> Nova Tarefa Cron
+        </button>
+      </div>
+
+      <!-- Grid de Crons Ativas -->
+      <div id="cronsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Preenchido via JS -->
+      </div>
+
+      <!-- Histórico de Execuções -->
+      <div class="card p-6 rounded-xl space-y-4">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <i data-lucide="history" class="w-4 h-4 text-blue-400"></i> Histórico de Execuções Recentes
+        </h3>
+        <div class="overflow-x-auto max-h-60">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-gray-900/60 text-gray-400 border-b border-gray-800">
+              <tr>
+                <th class="p-3">Data / Hora</th>
+                <th class="p-3">Tarefa</th>
+                <th class="p-3 text-center">Ações Disparadas</th>
+                <th class="p-3">Detalhes</th>
+              </tr>
+            </thead>
+            <tbody id="cronHistoryBody" class="divide-y divide-gray-800 font-mono">
+              <tr><td colspan="4" class="p-4 text-center text-gray-500">Nenhuma execução registrada ainda.</td></tr>
             </tbody>
           </table>
         </div>
@@ -259,22 +305,10 @@
         </div>
 
       </div>
-
-      <div class="card p-6 rounded-xl border border-blue-900/40 bg-gradient-to-r from-blue-950/20 to-transparent space-y-3">
-        <h3 class="text-sm font-bold text-blue-400 uppercase tracking-wider flex items-center gap-2">
-          <i data-lucide="shield-check" class="w-4 h-4"></i> Regra de Manutenção Econômica
-        </h3>
-        <p class="text-xs text-gray-300 leading-relaxed">
-          Para <b>apenas manter os seguidores</b> de uma conta sem gastar todo mês:
-          <br>1. O monitor calcula o <b>Teto Esperado</b> (`start_count + quantity`).
-          <br>2. Ao clicar em <b>"Ver Perfil / Atualizar"</b> ou inserir a contagem que o Instagram exibe, se o número estiver abaixo do teto, o botão de <b>Refill</b> fica em alerta vermelho pronto para envio com 1 clique!
-        </p>
-      </div>
     </section>
 
   </main>
 
-  <!-- App Script -->
   <script>
     let allServices = [];
     let localOrders = [];
@@ -284,16 +318,20 @@
       loadBalance();
       loadServices();
       loadLocalOrders();
+      loadCrons();
     });
 
     function switchTab(tabName) {
-      ['orders', 'new-order', 'services', 'refill-tool'].forEach(t => {
-        document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tabName);
+      ['orders', 'crons', 'new-order', 'services', 'refill-tool'].forEach(t => {
+        const el = document.getElementById(`tab-${t}`);
+        if (el) el.classList.toggle('hidden', t !== tabName);
         const btn = document.getElementById(`tabBtn-${t}`);
-        if (t === tabName) {
-          btn.className = "py-3 font-semibold text-blue-400 border-b-2 border-blue-500 flex items-center gap-2";
-        } else {
-          btn.className = "py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2";
+        if (btn) {
+          if (t === tabName) {
+            btn.className = "py-3 font-semibold text-blue-400 border-b-2 border-blue-500 flex items-center gap-2 whitespace-nowrap";
+          } else {
+            btn.className = "py-3 font-semibold text-gray-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap";
+          }
         }
       });
       lucide.createIcons();
@@ -379,6 +417,87 @@
       }
     }
 
+    // Gerenciador de Crons
+    async function loadCrons() {
+      try {
+        const res = await fetch('/api/crons');
+        const data = await res.json();
+        const container = document.getElementById('cronsList');
+
+        container.innerHTML = data.configs.map(c => `
+          <div class="card p-5 rounded-xl border border-gray-800 space-y-3">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-white text-sm">${c.name}</h4>
+                <p class="text-xs text-gray-400 mt-0.5">${c.description}</p>
+              </div>
+              <span class="text-xs px-2 py-0.5 rounded-full font-mono ${c.enabled ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-gray-800 text-gray-400'}">
+                ${c.enabled ? 'Ativa' : 'Pausada'}
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2 font-mono text-xs text-blue-400 bg-blue-950/40 p-2 rounded-lg border border-blue-900/40">
+              <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+              <span>Agendamento: <b>${c.expression}</b></span>
+            </div>
+
+            <div class="flex gap-2 pt-1">
+              <button onclick="triggerCronNow('${c.id}')" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold py-2 rounded-lg transition flex items-center justify-center gap-1.5">
+                <i data-lucide="play" class="w-3 h-3 text-emerald-400"></i> Executar Agora
+              </button>
+            </div>
+          </div>
+        `).join('');
+
+        // Histórico
+        const histTbody = document.getElementById('cronHistoryBody');
+        if (data.history && data.history.length > 0) {
+          histTbody.innerHTML = data.history.map(h => `
+            <tr>
+              <td class="p-3 text-gray-300">${new Date(h.executedAt).toLocaleString('pt-BR')}</td>
+              <td class="p-3 text-blue-400 font-semibold">${h.jobName}</td>
+              <td class="p-3 text-center font-bold ${h.actionsTriggered > 0 ? 'text-red-400' : 'text-emerald-400'}">${h.actionsTriggered}</td>
+              <td class="p-3 text-gray-400 truncate max-w-xs">${JSON.stringify(h.details || [])}</td>
+            </tr>
+          `).join('');
+        }
+        lucide.createIcons();
+      } catch (e) {
+        console.error('Erro ao carregar crons:', e);
+      }
+    }
+
+    async function triggerCronNow(id) {
+      if (!confirm(`Deseja forçar a execução imediata da tarefa "${id}"?`)) return;
+      try {
+        const res = await fetch(`/api/crons/trigger/${id}`, { method: 'POST' });
+        const data = await res.json();
+        alert('Execução concluída com sucesso:\n' + JSON.stringify(data, null, 2));
+        loadCrons();
+        loadLocalOrders();
+      } catch (e) {
+        alert('Erro ao executar cron: ' + e.message);
+      }
+    }
+
+    async function openCronModal() {
+      const name = prompt('Nome da Automação (ex: Verificação de Refill a cada 6 horas):');
+      if (!name) return;
+      const expression = prompt('Expressão Cron (ex: "0 */6 * * *" para a cada 6 horas, ou "0 9 * * *" para 1x ao dia às 09:00):', '0 */6 * * *');
+      if (!expression) return;
+
+      try {
+        await fetch('/api/crons', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, expression, description: 'Agendamento personalizado' })
+        });
+        loadCrons();
+      } catch (e) {
+        alert('Erro ao criar cron: ' + e.message);
+      }
+    }
+
     async function promptUpdateFollowers(orderId, teto) {
       const input = prompt(`Quantos seguidores a conta tem no momento? (Teto esperado do contrato: ${teto})`);
       if (input === null || input.trim() === '') return;
@@ -405,12 +524,8 @@
       try {
         const res = await fetch('/api/orders/auto-refill-check', { method: 'POST' });
         const data = await res.json();
-        if (data.count === 0) {
-          alert('✅ Nenhuma conta com queda pendente no momento!');
-        } else {
-          alert(`⚡ ${data.count} reposição(ões) solicitada(s) com sucesso!\n${JSON.stringify(data.actions, null, 2)}`);
-          loadLocalOrders();
-        }
+        alert(`⚡ Verificação concluída!\nReposições solicitadas: ${data.triggered || 0}`);
+        loadLocalOrders();
       } catch (e) {
         alert('Erro ao verificar refills: ' + e.message);
       }

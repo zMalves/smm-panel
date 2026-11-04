@@ -3,6 +3,7 @@ const router = express.Router();
 const smm = require('../services/smmClient');
 const storage = require('../services/storage');
 const checker = require('../services/followerChecker');
+const cronManager = require('../services/cronManager');
 
 /**
  * GET /api/balance
@@ -103,8 +104,6 @@ router.get('/orders/local', (req, res) => {
 
 /**
  * POST /api/orders/update-followers
- * Atualiza a contagem atual de seguidores da conta (automático ou manual)
- * e avalia se precisa de Refill
  */
 router.post('/orders/update-followers', async (req, res) => {
   try {
@@ -120,7 +119,6 @@ router.post('/orders/update-followers', async (req, res) => {
       ? Number(currentFollowers)
       : null;
 
-    // Se não passou manual, tenta consultar publicamente
     if (followers === null) {
       const live = await checker.fetchCurrentFollowers(order.link);
       if (live && live.followers !== null) {
@@ -132,10 +130,8 @@ router.post('/orders/update-followers', async (req, res) => {
       order.currentFollowers = followers;
       order.lastCheckedFollowers = new Date().toISOString();
 
-      // Calcula teto e necessidade de refill
       const target = order.targetAmount || (Number(order.start_count || 0) + Number(order.quantity || 0));
       order.targetAmount = target;
-      // Se seguidores atuais estão abaixo do teto contratado
       order.needsRefill = followers < target;
       order.dropAmount = Math.max(0, target - followers);
     }
@@ -149,32 +145,11 @@ router.post('/orders/update-followers', async (req, res) => {
 
 /**
  * POST /api/orders/auto-refill-check
- * Verifica todos os pedidos que precisam de refill e dispara
  */
 router.post('/orders/auto-refill-check', async (req, res) => {
   try {
-    const db = storage.loadData();
-    const actionsTaken = [];
-
-    for (const order of db.orders) {
-      const target = order.targetAmount || (Number(order.start_count || 0) + Number(order.quantity || 0));
-      if (order.currentFollowers !== null && order.currentFollowers < target) {
-        // Dispara o refill
-        const result = await smm.requestRefill(order.orderId);
-        actionsTaken.push({
-          orderId: order.orderId,
-          target,
-          current: order.currentFollowers,
-          drop: target - order.currentFollowers,
-          result
-        });
-        order.lastRefillRequested = new Date().toISOString();
-        order.lastRefillResult = result;
-      }
-    }
-
-    storage.saveData(db);
-    res.json({ count: actionsTaken.length, actions: actionsTaken });
+    const result = await cronManager.executeRefillCheckTask();
+    res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -185,33 +160,8 @@ router.post('/orders/auto-refill-check', async (req, res) => {
  */
 router.post('/orders/sync', async (req, res) => {
   try {
+    await cronManager.executeSyncStatusTask();
     const db = storage.loadData();
-    if (!db.orders || db.orders.length === 0) {
-      return res.json({ message: 'Nenhum pedido para sincronizar' });
-    }
-
-    const ids = db.orders.map(o => o.orderId).filter(Boolean);
-    if (ids.length === 0) return res.json({ message: 'Sem IDs válidos' });
-
-    const statusMap = await smm.getOrderStatus(ids.slice(0, 100));
-
-    db.orders.forEach(o => {
-      const live = statusMap[String(o.orderId)];
-      if (live && !live.error) {
-        o.status = live.status;
-        o.charge = live.charge;
-        o.start_count = live.start_count;
-        o.remains = live.remains;
-        // Atualiza teto
-        o.targetAmount = Number(live.start_count || 0) + Number(o.quantity || 0);
-        if (o.currentFollowers !== null && o.currentFollowers !== undefined) {
-          o.needsRefill = o.currentFollowers < o.targetAmount;
-          o.dropAmount = Math.max(0, o.targetAmount - o.currentFollowers);
-        }
-      }
-    });
-
-    storage.saveData(db);
     res.json({ updated: db.orders.length, orders: db.orders });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -270,6 +220,74 @@ router.post('/cancel', async (req, res) => {
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * GET /api/crons
+ * Retorna as crons configuradas e o histórico de execuções
+ */
+router.get('/crons', (req, res) => {
+  const db = storage.loadData();
+  res.json({
+    configs: db.cronConfigs || [],
+    history: db.cronHistory || []
+  });
+});
+
+/**
+ * POST /api/crons
+ * Cria ou atualiza uma cron job
+ */
+router.post('/crons', (req, res) => {
+  const { id, name, expression, enabled, description } = req.body;
+  if (!name || !expression) {
+    return res.status(400).json({ error: 'Nome e expressão cron são obrigatórios' });
+  }
+
+  const db = storage.loadData();
+  if (!db.cronConfigs) db.cronConfigs = [];
+
+  const cronId = id || `cron_${Date.now()}`;
+  const existingIdx = db.cronConfigs.findIndex(c => c.id === cronId);
+
+  const newConfig = {
+    id: cronId,
+    name,
+    expression,
+    enabled: enabled !== undefined ? enabled : true,
+    description: description || ''
+  };
+
+  if (existingIdx >= 0) {
+    db.cronConfigs[existingIdx] = newConfig;
+  } else {
+    db.cronConfigs.push(newConfig);
+  }
+
+  storage.saveData(db);
+  cronManager.scheduleJob(newConfig);
+
+  res.json({ success: true, cron: newConfig });
+});
+
+/**
+ * POST /api/crons/trigger/:id
+ * Dispara manualmente uma cron imediatamente
+ */
+router.post('/crons/trigger/:id', async (req, res) => {
+  try {
+    if (req.params.id === 'daily_refill_check') {
+      const result = await cronManager.executeRefillCheckTask();
+      return res.json({ success: true, result });
+    }
+    if (req.params.id === 'hourly_order_sync') {
+      await cronManager.executeSyncStatusTask();
+      return res.json({ success: true, message: 'Sincronização concluída' });
+    }
+    res.status(400).json({ error: 'Ação não encontrada para esta cron' });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
   }
 });
 
