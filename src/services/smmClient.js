@@ -2,29 +2,47 @@ const API_KEY = process.env.SMM_API_KEY || "f188ca3f9d99fb75b083fa70bf5337a8";
 const API_URL = process.env.SMM_API_URL || "https://smmpainel.com/api/v2";
 
 /**
- * Chamada genérica POST para a API SMM
+ * Chamada genérica POST resiliente para a API SMM
+ * Inclui tratamento de timeout, retentativas e parse seguro
  */
-async function callApi(action, extraParams = {}) {
+async function callApi(action, extraParams = {}, retries = 2) {
   const bodyParams = new URLSearchParams({
     key: API_KEY,
     action: action,
     ...extraParams
   });
 
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-    },
-    body: bodyParams.toString()
-  });
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
 
-  const text = await response.text();
-  try {
-    return JSON.parse(text);
-  } catch (e) {
-    return { error: 'Invalid JSON response from provider', raw: text };
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'User-Agent': 'SmmPanelPro/2.0 (Node.js)'
+        },
+        body: bodyParams.toString(),
+        signal: controller.signal
+      });
+
+      clearTimeout(timeout);
+
+      const text = await response.text();
+      try {
+        return JSON.parse(text);
+      } catch (parseErr) {
+        return { error: 'Provedor retornou formato inválido', raw: text };
+      }
+    } catch (err) {
+      clearTimeout(timeout);
+      if (attempt === retries) {
+        return { error: `Falha na conexão com API SMM (${err.name === 'AbortError' ? 'Timeout de 12s' : err.message})` };
+      }
+      // Espera 1s antes de tentar novamente
+      await new Promise(r => setTimeout(r, 1000));
+    }
   }
 }
 
@@ -116,4 +134,3 @@ module.exports = {
   getRefillStatus,
   cancelOrders
 };
-
