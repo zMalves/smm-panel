@@ -14,6 +14,13 @@ async function executeRefillCheckTask() {
   const db = storage.loadData();
   const logs = [];
 
+  // 0. Sincroniza primeiro o status dos pedidos para obter os números mais recentes do provedor
+  try {
+    await executeSyncStatusTask();
+  } catch (e) {
+    console.error('[CRON Refill] Falha prévia no sync dos pedidos:', e.message);
+  }
+
   // 1. Atualiza e verifica contas monitoradas
   for (const acc of (db.accounts || [])) {
     if (!acc.autoRefillEnabled) continue;
@@ -104,6 +111,24 @@ async function executeSyncStatusTask() {
           o.start_count = live.start_count;
           o.remains = live.remains;
           o.targetAmount = Number(live.start_count || 0) + Number(o.quantity || 0);
+
+          // Atualiza seguidores da conta vinculada se o pedido avançou
+          const startNum = Number(live.start_count || 0);
+          const remainsNum = Number(live.remains || 0);
+          const totalQty = Number(o.quantity || 0);
+          const delivered = Math.max(0, totalQty - remainsNum);
+          const estimatedFollowers = startNum + delivered;
+
+          if (estimatedFollowers > 0) {
+            const acc = (db.accounts || []).find(a => a.id === o.accountId || a.link === o.link);
+            if (acc) {
+              if (acc.currentFollowers === null || estimatedFollowers > acc.currentFollowers) {
+                acc.currentFollowers = estimatedFollowers;
+                acc.lastChecked = timestamp;
+                console.log(`[CRON Sync] Atualizado seguidores da conta ${acc.name} para ${acc.currentFollowers} baseado na entrega do pedido #${o.orderId}`);
+              }
+            }
+          }
         }
         if ((!o.serviceName || o.serviceName.startsWith('Serviço #')) && servicesList.length > 0) {
           const found = servicesList.find(s => Number(s.service) === Number(o.serviceId));
